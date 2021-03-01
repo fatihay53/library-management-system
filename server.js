@@ -17,13 +17,13 @@ app.post('/api/addmember/member', async function (req, res) {
     // the data is a string, need to parse to object
     const rawData = req.body
     // const data = JSON.parse(rawData)
-    console.log(rawData)
-    let result = await orm.addMember(rawData)
+
+    await orm.addMember(rawData)
 
     // send a respond
     res.redirect('/index.html')
     // res.send(data)
-    console.log(result)
+
 })
 
 
