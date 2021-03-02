@@ -5,12 +5,20 @@ const db = require('./connection')('library_managment_system', 'password123')
 // ====================fatih=============================
 
 //=================//CATEGORY============================
+
+async function viewCategories() {
+    return await db.query('SELECT * FROM category')
+}
 async function addCategory(input) {
     return db.query('INSERT INTO category (categoryName,categoryDes) values (?,?)', [input.categoryName, input.categoryDes])
 }
 
+
 async function deleteCategory(id) {
-    return db.query(`DELETE FROM category WHERE id='${id}'`)
+    await db.query(`DELETE FROM category WHERE categoryID=${id}`)
+    let result = await db.query('SELECT * FROM category')
+
+    return result
 
 }
 
@@ -66,4 +74,4 @@ async function getMember(id) {
 
 
 
-module.exports = { addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewCategories, viewBookMember, viewBookName, viewBookCategory }

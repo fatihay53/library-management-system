@@ -12,19 +12,19 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get( '/api/members', async function( req, res ){
+app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
-    console.log( `[GET /api/quote] membersList` )
+
     res.send(membersList)
 })
 
 // to get memeber info by passing memberID
-app.get( '/api/member/:memberID', async function( req, res ){
+app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
 
-    const member = await orm.getMember( id )
-    
-    res.send( member)
+    const member = await orm.getMember(id)
+
+    res.send(member)
 })
 
 app.post('/api/addmember/member', async (req, res) => {
@@ -40,22 +40,34 @@ app.post('/api/addmember/member', async (req, res) => {
 app.post('/api/addcategory', async (req, res) => {
     const data = req.body
     console.log(data)
-   let result = await orm.addCategory(data)
-console.log(result)
-    res.redirect('/index.html')
+    let result = await orm.addCategory(data)
+
+    res.redirect('/allcategory.html')
 })
 //          delete Category
-app.delete('api/deletecategory/:id', async (req, res) => {
+app.delete('/api/deletecategory/:id', async (req, res) => {
     let id = req.params.id
-    await orm.deleteCategory(id)
-    res.redirect('/index.html')
+    // console.log(id)
+    let result = await orm.deleteCategory(id)
+    res.send(result)
+
+
 })
 //             update Category
-app.put('api/updatecategory/:id', async (req, res) => {
+app.put('/api/updatecategory/:id', async (req, res) => {
     let data = req.body
     let id = req.params.id
     await orm.updateCategory(id, data)
-    res.redirect('/index.html')
+
+})
+
+//              category GET list
+
+app.get('/api/categories', async (req, res) => {
+    const data = await orm.viewCategories()
+    res.send(data)
+
+
 })
 //===================END===================================
 
