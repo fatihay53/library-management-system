@@ -12,6 +12,20 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.get( '/api/members', async function( req, res ){
+    const membersList = await orm.getMembers()
+    console.log( `[GET /api/quote] membersList` )
+    res.send(membersList)
+})
+
+// to get memeber info by passing memberID
+app.get( '/api/member/:memberID', async function( req, res ){
+    const id = req.params.memberID
+
+    const member = await orm.getMember( id )
+    
+    res.send( member)
+})
 
 app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
