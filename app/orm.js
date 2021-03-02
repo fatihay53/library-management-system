@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'password123')
+const db = require('./connection')('library_managment_system', 'rootroot')
 
 
 
@@ -30,6 +30,11 @@ async function addMember(data) {
 // ================================end==================================================
 
 
+// =======================================Faisal==========================================
+// to get all member from the database
+async function getMembers() {
+    return db.query("SELECT * FROM member")
+}
 
 //===========================Books=======================================
 async function addBook(input) {
@@ -44,17 +49,20 @@ async function deleteBooks(id) {
     return db.query(`DELETE FROM book WHERE bookID='${id}'`)
 }
 
-async function viewBookMember(){
+async function viewBookMember() {
     return db.query('SELECT * FROM book left join member on memberID=book.bookID')
 }
-async function viewBookName(){
+async function viewBookName() {
     return db.query('SELECT * FROM book left join member on memberID=book.bookID where member.firstName="XX" ')
 }
-async function viewBookCategory(){
-    return db.query ('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
+async function viewBookCategory() {
+    return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
+    // =======================================Faisal==========================================
+    // to return a record by passing memberID
+    async function getMember(id) {
+        return db.query(`SELECT * FROM member where memberID = ${id}`)
+    }
 }
 
 
-
-module.exports = { addMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks,viewBookMember,viewBookName,viewBookCategory }
-
+module.exports = { addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
