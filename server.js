@@ -3,7 +3,7 @@ const app = express()
 
 const orm = require('./app/orm')
 
-const PORT = process.env.PORT || 333
+const PORT = process.env.PORT || 8080
 
 // will share any static html files with the browser
 app.use(express.static('public'))
