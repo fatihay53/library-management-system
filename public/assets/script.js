@@ -34,12 +34,16 @@ async function editBook() {
 }
 
 
-// ============== Call the server and get all members =========================== 
-async function getAllMembers(){
-    const members = await fetch('/api/members' ).then( r=>r.json() )
+
+
+
+// Call the server and get all members
+async function getAllMembers() {
+    const members = await fetch('/api/members').then(r => r.json())
+
 
     document.querySelector('#membersList').innerHTML = ''
-    for(i=0; i<members.length; i++){
+    for (i = 0; i < members.length; i++) {
         document.querySelector('#membersList').innerHTML += `
         <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> <!-- card starts here-->
         <div class="card-header">
@@ -66,4 +70,69 @@ async function getAllMembers(){
     }
 }
 getAllMembers()
+
+
+async function getAllCategories() {
+    const categories = await fetch('/api/categories').then(r => r.json())
+    console.log(categories)
+    document.querySelector('#categoryList').innerHTML = ''
+    categories.forEach(data => {
+        document.querySelector('#categoryList').innerHTML += `<div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;">
+        <!-- card starts here-->
+        <div class="card-header">
+        
+            Category ID: <span id="categoryID">${data.categoryID}</span>
+        </div>
+        <div class="card-body">
+            <p style="display: inline;">Category Name: </p><span id="categoryName">${data.categoryName}</span>
+            <br>
+            <p style="display: inline;">Category Description: </p><span id="categoryDes">${data.categoryDes}</span>
+            <br>       
+            <div class="float-end">
+            <button onClick="deleteCategory('${data.categoryID}')" class="card-link btn btn-danger btn-sm">Delete</button>
+            <button onClick="editCategory('${data.categoryID}')" class="card-link btn btn-primary btn-sm">Edit</button>
+                <a href="#" class="btn btn-secondary">Borrow book</a>
+            </div>
+          
+        </div>
+        <!--card body ends here-->
+    </div> <!-- Column/Card ends here -->`
+    })
+}
+{/* <form action='/api/category/${data.categoryID}' method="POST"></form>  */ }
+getAllCategories()
+
+async function deleteCategory(id) {
+
+    const fetchOptions = {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'delete'
+    }
+    const result = await fetch(`/api/deletecategory/${id}`, fetchOptions).then(r => r.json())
+    // reload the quotes with the deleted ones now gone
+    getAllCategories()
+}
+
+async function editCategory(id) {
+    alert(`editing ${id}`)
+    const fetchOptions = {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'put'
+    }
+    const result = await fetch(`/api/updatecategory/${id}`, fetchOptions).then(r => r.json())
+    getAllCategories()
+}
+
+
+
+
+    // const editData = {
+    //     headers: { 'Content-Type': 'application/json' },
+    //     method: 'get',
+
+    // }
+    // const result = await fetch(`/api/contact/${id}`, editData).then(res => res.json())
+    // document.getElementById('firstName').value = result[0].first_name
+    // document.getElementById('lastName').value = result[0].last_name
+    // document.getElementById('phoneNumber').value = result[0].phone_number
 

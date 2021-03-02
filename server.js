@@ -3,7 +3,7 @@ const app = express()
 
 const orm = require('./app/orm')
 
-const PORT = process.env.PORT || 333
+const PORT = process.env.PORT || 8080
 
 // will share any static html files with the browser
 app.use(express.static('public'))
@@ -11,16 +11,17 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+
 // ======================= Member ===================================
 // show all members
 app.get( '/api/members', async function( req, res ){
     const membersList = await orm.getMembers()
-    console.log( `[GET /api/quote] membersList` )
+    console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
 })
 
 // to get memeber info by passing memberID
-app.get( '/api/member/:memberID', async function( req, res ){
+app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
     const member = await orm.getMember( id )
     res.send( member)
@@ -30,7 +31,6 @@ app.get( '/api/member/:memberID', async function( req, res ){
 app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
     await orm.addMember(rawData)
-    // send a respond
     res.redirect('/index.html')
 })
 
@@ -42,40 +42,71 @@ app.post('/api/member/:memberID/update', function(req, res) {
     console.log(typeof(id), data)
     orm.updateMember(id, data)
     res.redirect('/index.html')
+})
 
+app.get('/api/members', async function (req, res) {
+    const membersList = await orm.getMembers()
+    console.log(`[GET /api/quote] membersList`)
+    res.send(membersList)
 })
 // ======================== Member End ==============================
+
+
+//==================== Book ======================
+
+app.get('/api/categoriesList', async function (req, res) {
+    const categoriesList = await orm.getCategoriesList()
+    console.log(`[GET /api/quote] categoriesList`)
+    res.send(categoriesList)
+})
+
 
 //=====================CATEGORY====================
 
 //          adding Category
 app.post('/api/addcategory', async (req, res) => {
     const data = req.body
-    await orm.addCategory(data)
-    res.redirect('/index.html')
+    console.log(data)
+    let result = await orm.addCategory(data)
+
+    res.redirect('/allcategory.html')
 })
 //          delete Category
-app.delete('api/deletecategory/:id', async (req, res) => {
+app.delete('/api/deletecategory/:id', async (req, res) => {
     let id = req.params.id
-    await orm.deleteCategory(id)
-    res.redirect('/index.html')
+    // console.log(id)
+    let result = await orm.deleteCategory(id)
+    res.send(result)
+
+
 })
 //             update Category
-app.put('api/updatecategory/:id', async (req, res) => {
+app.put('/api/updatecategory/:id', async (req, res) => {
     let data = req.body
     let id = req.params.id
     await orm.updateCategory(id, data)
-    res.redirect('/index.html')
+
+})
+
+//              category GET list
+
+app.get('/api/categories', async (req, res) => {
+    const data = await orm.viewCategories()
+    res.send(data)
+
+
 })
 //===================END===================================
 
 
 //======================Book============================
 
+
 //                  addBook
-app.post('api/addbook', async (req, res) => {
-    let data = req.body
-    await orm.addBook(data)
+app.post('/api/addbook', async (req, res) => {
+    const bookData = req.body
+    await orm.addBook(bookData)
+    res.redirect('/index.html')
 })
 //                  updateBook
 app.put('api/updatebook/:id', async (req, res) => {
