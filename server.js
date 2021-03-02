@@ -12,19 +12,19 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get( '/api/members', async function( req, res ){
+app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
-    console.log( `[GET /api/quote] membersList` )
+    console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
 })
 
 // to get memeber info by passing memberID
-app.get( '/api/member/:memberID', async function( req, res ){
+app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
 
-    const member = await orm.getMember( id )
-    
-    res.send( member)
+    const member = await orm.getMember(id)
+
+    res.send(member)
 })
 
 app.post('/api/addmember/member', async (req, res) => {
@@ -33,6 +33,23 @@ app.post('/api/addmember/member', async (req, res) => {
     // send a respond
     res.redirect('/index.html')
 })
+
+
+app.get('/api/members', async function (req, res) {
+    const membersList = await orm.getMembers()
+    console.log(`[GET /api/quote] membersList`)
+    res.send(membersList)
+})
+//==================== Book ======================
+
+app.get('/api/categoriesList', async function (req, res) {
+    const categoriesList = await orm.getCategoriesList()
+    console.log(`[GET /api/quote] categoriesList`)
+    res.send(categoriesList)
+})
+
+
+
 
 //=====================CATEGORY====================
 
@@ -60,10 +77,12 @@ app.put('api/updatecategory/:id', async (req, res) => {
 
 //======================Book============================
 
+
 //                  addBook
-app.post('api/addbook', async (req, res) => {
-    let data = req.body
-    await orm.addBook(data)
+app.post('/api/addbook', async (req, res) => {
+    const bookData = req.body
+    await orm.addBook(bookData)
+    res.redirect('/index.html')
 })
 //                  updateBook
 app.put('api/updatebook/:id', async (req, res) => {

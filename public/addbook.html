@@ -56,41 +56,50 @@
                 <input name="author" type="text" class="form-control" id="authorInput" placeholder="Enter Author name">
             </div>
             <div class="mb-3">
-                <label for="publishingYear" class="form-label">Publish Year</label>
-                <input name="publishYear" type="number" class="form-control" id="publishYearInput"
-                    placeholder="Enter Publish Year" maxlength="10"
+                <label for="publishYearInput" class="form-label">Publish Year</label>
+                <input name="publishingYear" type="number" class="form-control" id="publishYearInput"
+                    placeholder="Enter Publish Year" maxlength="4"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
             </div>
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Please Choise A member</option>
+                <label for="categoryInput" class="form-label">Category</label>
+                <select name="categoryID" class="form-select" aria-label="Default select example" id="categoryOptions">
+                    <option value="" selected>Choose a category name</option>
+                    <!-- <option selected>Choose A Category Name</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="3">Three</option> -->
                 </select>
             </div>
-            <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Please Choise A Category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="barrowDate" class="form-label">Barrow Date</label>
-                <input name="barrowDate" type="text" class="form-control" id="barrowDateInput"
-                    placeholder="Please Enter Barrow Date">
-            </div>
-
-            <button type="submit" class="btn btn-secondary">Submit</button>
+            <button type="submit" class="btn btn-secondary">Save</button>
         </form>
-
-
-
-
-
     </div>
+
+    <script>
+
+        // function checkSelectedOption(){
+        //    let xyz = document.querySelector("#categoryOptions").value
+        //    if(xyz ==="")
+        //    {
+        //        alert('Please select category')
+        //    }
+        // }
+
+        // function to return list of categories to display in dropdown menu to add new book
+        async function getCategoryList(){
+
+            const catgeoriesList = await fetch('/api/categoriesList' ).then( r=>r.json() )
+
+            // document.querySelector('#membersList').innerHTML = ''
+
+
+            for(i=0; i<catgeoriesList.length; i++){
+                document.querySelector('#categoryOptions').innerHTML +=
+                `<option value="${catgeoriesList[i].categoryID}">${catgeoriesList[i].categoryName}</option>`;
+            }
+        }
+        getCategoryList()
+    </script>
 </body>
 
 </html>

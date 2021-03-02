@@ -38,8 +38,8 @@ async function getMembers() {
 
 //===========================Books=======================================
 async function addBook(input) {
-    return db.query('INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,barrowDate) values (?,?,?,?,?,?)',
-        [input.bookName, input.author, input.publishingYear, input.memberID, input.categoryID, input.barrowDate])
+    return db.query('INSERT INTO book (bookName,author,publishingYear,categoryID) values (?,?,?,?)',
+        [input.bookName, input.author, input.publishingYear, input.categoryID])
 }
 async function updateBook(id, input) {
     return db.query(`UPDATE book SET bookName = '${input.bookName}', author='${input.author}',
@@ -57,12 +57,14 @@ async function viewBookName() {
 }
 async function viewBookCategory() {
     return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
-    // =======================================Faisal==========================================
-    // to return a record by passing memberID
-    async function getMember(id) {
-        return db.query(`SELECT * FROM member where memberID = ${id}`)
-    }
+}  // =======================================Faisal==========================================
+// to return a record by passing memberID
+async function getMember(id) {
+    return db.query(`SELECT * FROM member where memberID = ${id}`)
 }
 
+async function getCategoriesList() {
+    return db.query("SELECT * FROM category")
+}
 
-module.exports = { addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
