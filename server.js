@@ -39,7 +39,9 @@ app.post('/api/addmember/member', async (req, res) => {
 //          adding Category
 app.post('/api/addcategory', async (req, res) => {
     const data = req.body
-    await orm.addCategory(data)
+    console.log(data)
+   let result = await orm.addCategory(data)
+console.log(result)
     res.redirect('/index.html')
 })
 //          delete Category
@@ -64,6 +66,7 @@ app.put('api/updatecategory/:id', async (req, res) => {
 app.post('api/addbook', async (req, res) => {
     let data = req.body
     await orm.addBook(data)
+    res.redirect('/index.html')
 })
 //                  updateBook
 app.put('api/updatebook/:id', async (req, res) => {

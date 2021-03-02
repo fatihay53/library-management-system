@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'rootroot')
+const db = require('./connection')('library_managment_system', 'password123')
 
 
 
@@ -57,12 +57,13 @@ async function viewBookName() {
 }
 async function viewBookCategory() {
     return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
-    // =======================================Faisal==========================================
-    // to return a record by passing memberID
-    async function getMember(id) {
-        return db.query(`SELECT * FROM member where memberID = ${id}`)
-    }
 }
+// =======================================Faisal==========================================
+// to return a record by passing memberID
+async function getMember(id) {
+    return db.query(`SELECT * FROM member where memberID = ${id}`)
+}
+
 
 
 module.exports = { addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
