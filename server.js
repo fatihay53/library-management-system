@@ -14,7 +14,11 @@ app.use(express.json())
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
+<<<<<<< HEAD
     console.log(`[GET /api/quote] membersList`)
+=======
+
+>>>>>>> branch-Fatih
     res.send(membersList)
 })
 
@@ -58,21 +62,33 @@ app.post('/api/addcategory', async (req, res) => {
     const data = req.body
     console.log(data)
     let result = await orm.addCategory(data)
-    console.log(result)
-    res.redirect('/index.html')
+
+    res.redirect('/allcategory.html')
 })
 //          delete Category
-app.delete('api/deletecategory/:id', async (req, res) => {
+app.delete('/api/deletecategory/:id', async (req, res) => {
     let id = req.params.id
-    await orm.deleteCategory(id)
-    res.redirect('/index.html')
+    // console.log(id)
+    let result = await orm.deleteCategory(id)
+    res.send(result)
+
+
 })
 //             update Category
-app.put('api/updatecategory/:id', async (req, res) => {
+app.put('/api/updatecategory/:id', async (req, res) => {
     let data = req.body
     let id = req.params.id
     await orm.updateCategory(id, data)
-    res.redirect('/index.html')
+
+})
+
+//              category GET list
+
+app.get('/api/categories', async (req, res) => {
+    const data = await orm.viewCategories()
+    res.send(data)
+
+
 })
 //===================END===================================
 
