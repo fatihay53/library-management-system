@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'password123')
+const db = require('./connection')('library_managment_system', 'rootroot')
 
 
 
@@ -24,11 +24,20 @@ async function addMember(data) {
     console.log(result)
 }
 
+// =======================================Faisal==========================================
+// to get all member from the database
+async function getMembers(){
+    return db.query( "SELECT * FROM member" )
+}
 
-
+// =======================================Faisal==========================================
+// to return a record by passing memberID
+async function getMember(id){
+    return db.query(`SELECT * FROM member where memberID = ${id}`)
+}
 
 
 // ================================end==================================================
 
-module.exports = { addMember }
+module.exports = { addMember, getMembers, getMember }
 
