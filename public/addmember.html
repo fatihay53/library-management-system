@@ -39,28 +39,28 @@
     <div class="container">
         <h2>Add new member</h2>
         <form action="/api/addmember/member" method="post">
-        <div class="mb-3">
-            <label for="firstNameInput" class="form-label">First Name</label>
-            <input name="firstName" type="text" class="form-control" id="firstNameInput" placeholder="Enter first name">
-          </div>
-          <div class="mb-3">
-            <label for="lastNameInput" class="form-label">Last Name</label>
-            <input name="lastName" type="text" class="form-control" id="lastNameInput" placeholder="Enter last name">
-          </div>
-          <div class="mb-3">
-            <label for="phoneInput" class="form-label">Phone Number</label>
-            <input name="phoneNumber" type="number" class="form-control" id="phoneInput" placeholder="Enter 10-digit phone number" maxlength="10"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
-          </div>
-          <div class="mb-3">
-            <label for="emailInput" class="form-label">Email</label>
-            <input name="email" type="text" class="form-control" id="emailInput" placeholder="Enter email address">
-          </div>
-          <div class="mb-3">
-            <label for="addressTextArea" class="form-label">Address</label>
-            <textarea name="address" class="form-control" id="addressTextArea" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn btn-secondary">Submit</button>
+            <div class="mb-3">
+                <label for="firstNameInput" class="form-label">First Name</label>
+                <input name="firstName" type="text" class="form-control" id="firstNameInput" placeholder="Enter first name">
+            </div>
+            <div class="mb-3">
+                <label for="lastNameInput" class="form-label">Last Name</label>
+                <input name="lastName" type="text" class="form-control" id="lastNameInput" placeholder="Enter last name">
+            </div>
+            <div class="mb-3">
+                <label for="phoneInput" class="form-label">Phone Number</label>
+                <input name="phoneNumber" type="number" class="form-control" id="phoneInput" placeholder="Enter 10-digit phone number" maxlength="10"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
+            </div>
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input name="email" type="text" class="form-control" id="emailInput" placeholder="Enter email address">
+            </div>
+            <div class="mb-3">
+                <label for="addressTextArea" class="form-label">Address</label>
+                <textarea name="address" class="form-control" id="addressTextArea" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary">Submit</button>
         </form>
     </div>
     
