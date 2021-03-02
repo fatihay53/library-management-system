@@ -13,40 +13,76 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-app.post('/api/addmember/member', async function (req, res) {
-    // the data is a string, need to parse to object
+app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
-    // const data = JSON.parse(rawData)
-
     await orm.addMember(rawData)
-
     // send a respond
     res.redirect('/index.html')
-    // res.send(data)
-
 })
 
+//=====================CATEGORY====================
+
+//          adding Category
+app.post('/api/addcategory', async (req, res) => {
+    const data = req.body
+    await orm.addCategory(data)
+    res.redirect('/index.html')
+})
+//          delete Category
+app.delete('api/deletecategory/:id', async (req, res) => {
+    let id = req.params.id
+    await orm.deleteCategory(id)
+    res.redirect('/index.html')
+})
+//             update Category
+app.put('api/updatecategory/:id', async (req, res) => {
+    let data = req.body
+    let id = req.params.id
+    await orm.updateCategory(id, data)
+    res.redirect('/index.html')
+})
+//===================END===================================
 
 
-// Routes (Endpoints) =========================================
-// app.get('/api/category', async function (req, res) {
-//     const categoryList = await db.query("SELECT * FROM category")
-//     // console.log(`[GET /api/category] categoryList ${categoryList}`)
-//     res.send(categoryList)
-// })
+//======================Book============================
 
-// app.post('/api/category', async function (req, res) {
-//     const categoryData = req.body
-//     console.log(categoryData)
-//     const result = await db.query(`INSERT INTO category (categoryName,categoryDes) VALUES(?,?)`,
-//         [categoryData.categoryName, categoryData.categoryDes])
-//     // console.log(`[POST /api/category] categoryData.result`, categoryData, result)
+//                  addBook
+app.post('api/addbook', async (req, res) => {
+    let data = req.body
+    await orm.addBook(data)
+})
+//                  updateBook
+app.put('api/updatebook/:id', async (req, res) => {
+    let data = req.body
+    let id = req.params.id
+    await orm.updateBook(id, data)
+})
+//                  deleteBook
+app.delete('api/deletebook/:id', async (req, res) => {
+    let id = req.params.id
+    await orm.deleteBooks(id)
+})
 
-//     // if we are using RESTful javascript call we can send JSON data back
-//     // res.send( { message: "Quote sent!"} )
-//     // if we are doing a FORM POST direclty, we need to redirect to the index page.
-//     res.redirect('/index.html')
-// })
+//                  viewBook by member
+app.get('api/viewbook/member', async (req, res) => {
+    await orm.viewBookMember()
+})
+
+//                  viewBook by name
+
+app.get('api/viewbook/name', async (req, res) => {
+    await orm.viewBookName()
+    // need parameter for memeberName
+})
+
+//                  viewBook by category
+
+app.get('api/viewbook/category', async (req, res) => {
+    await orm.viewBookCategory()
+    // need parameter for categoryName
+})
+
+// ===================END===================================
 
 
 // Listener ==================================================
