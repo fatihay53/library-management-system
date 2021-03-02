@@ -61,24 +61,26 @@
             <label for="addressTextArea" class="form-label">Address</label>
             <textarea name="address" class="form-control" id="addressTextArea" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn-secondary">Update</button>
+          <button type="submit"  class="btn btn-secondary">Update</button>
         </form>
     </div>
 
+    <script src="./assets/script.js">  
+    </script>
     <script>
-        // to get member by ID
-       async function getMemberByID(memeberID){
-            const member = await fetch(`/api/member/${memeberID}` ).then( r=>r.json() )
+        async function getMemberByID(){
+    let memeberID=location.hash.substr(1)
+    console.log(memeberID)
+    const member = await fetch(`/api/member/${memeberID}` ).then( r=>r.json() )
 
-            document.querySelector('#memberID').innerHTML = member[0].memeberID;
-            document.querySelector('#firstNameInput').value = member[0].firstName;
-            document.querySelector('#lastNameInput').value = member[0].lastName;
-            document.querySelector('#phoneInput').value = member[0].phoneNumber;
-            document.querySelector('#emailInput').value = member[0].email;
-            document.querySelector('#addressTextArea').value = member[0].address;
-        }
-
-        getMemberByID(2)
+    document.querySelector('#memberID').innerHTML = member[0].memeberID;
+    document.querySelector('#firstNameInput').value = member[0].firstName;
+    document.querySelector('#lastNameInput').value = member[0].lastName;
+    document.querySelector('#phoneInput').value = member[0].phoneNumber;
+    document.querySelector('#emailInput').value = member[0].email;
+    document.querySelector('#addressTextArea').value = member[0].address;
+}
+getMemberByID();
     </script>
 </body>
 </html>

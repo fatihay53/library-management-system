@@ -23,7 +23,7 @@ app.get( '/api/member/:memberID', async function( req, res ){
     const id = req.params.memberID
 
     const member = await orm.getMember( id )
-
+    
     res.send( member)
 })
 
