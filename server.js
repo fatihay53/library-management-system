@@ -3,7 +3,7 @@ const app = express()
 
 const orm = require('./app/orm')
 
-const PORT = process.env.PORT || 333
+const PORT = process.env.PORT || 8080
 
 // will share any static html files with the browser
 app.use(express.static('public'))
@@ -56,7 +56,9 @@ app.get('/api/categoriesList', async function (req, res) {
 //          adding Category
 app.post('/api/addcategory', async (req, res) => {
     const data = req.body
-    await orm.addCategory(data)
+    console.log(data)
+    let result = await orm.addCategory(data)
+    console.log(result)
     res.redirect('/index.html')
 })
 //          delete Category
