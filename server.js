@@ -14,11 +14,7 @@ app.use(express.json())
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
-<<<<<<< HEAD
     console.log(`[GET /api/quote] membersList`)
-=======
-
->>>>>>> branch-Fatih
     res.send(membersList)
 })
 
