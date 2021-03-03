@@ -3,7 +3,7 @@ const app = express()
 
 const orm = require('./app/orm')
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8088
 
 // will share any static html files with the browser
 app.use(express.static('public'))
@@ -42,16 +42,49 @@ app.get('/api/members', async function (req, res) {
 })
 //==================== Book ======================
 
+// get borrowed books by memeberID - Faisal
+
+
+app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
+    const memberID = req.params.memberID
+
+    const books = await orm.getBorrowedBooksByMemberID(memberID)
+    console.log("book is found")
+    res.send(books)
+})
+
+
+// app.use(function (req, res) {
+//     res.status(404).render('/index.html');
+// });
+
 // Update book when member borrows  - Faisal
 
 app.put("/api/borrow", async function (req, res) {
     const bookID = req.body.bookID.trim();
     const memberID = req.body.memberID.trim();
-    console.log(bookID, memberID)
-    const result = await orm.borrowBook(bookID, memberID)
+    const borrow_date = req.body.borrow_date.trim();
+    console.log(bookID, memberID, borrow_date)
+    const result = await orm.borrowBook(bookID, memberID, borrow_date)
+
     console.log("book has been updated")
-    res.redirect('/index.html')
+    // windows.location.href = "/index.html"
+    // res.redirect('/index.html')
+    res.send({ status: true })
+
 });
+
+// Update book when member return book - Faisal
+
+app.put("/api/return", async function (req, res) {
+    const bookID = req.body.bookID.trim();
+    console.log(bookID)
+    const result = await orm.returnBook(bookID)
+    console.log("book has been returned")
+    res.send({ status: true })
+    // res.redirect('/index.html')
+});
+
 
 app.get('/api/availablebooks', async function (req, res) {
     const availableBooksList = await orm.getAvailableBook()
