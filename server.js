@@ -16,7 +16,7 @@ app.use(express.json())
 // show all members
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
-    console.log(`[GET /api/quote] membersList`)
+ 
    
     res.send(membersList)
 })
