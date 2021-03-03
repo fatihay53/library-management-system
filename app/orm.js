@@ -22,6 +22,11 @@ async function deleteCategory(id) {
 
 }
 
+async function getBookCategoryID(id){
+    console.table(db.query(`SELECT * FROM book where categoryID=${id}`))
+    return db.query(`SELECT * FROM book where categoryID=${id}`)
+}
+
 async function updateCategory(id, input) {
     return db.query(`UPDATE category SET categoryName = '${input.categoryName}', categoryDes='${input.categoryDes}' WHERE id = ${id}`)
 }
@@ -81,4 +86,4 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory,getBookCategoryID,viewCategories, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }

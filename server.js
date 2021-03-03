@@ -74,7 +74,11 @@ app.delete('/api/deletecategory/:id', async (req, res) => {
 app.put('/api/updatecategory/:id', async (req, res) => {
     let data = req.body
     let id = req.params.id
-    await orm.updateCategory(id, data)
+    let search = await orm.getBookCategoryID(id)
+    if (search.categoryID === null){
+    let result = await orm.updateCategory(id, data) }
+
+    else{ alert(`Can not edit this Category`)} 
 
 })
 
