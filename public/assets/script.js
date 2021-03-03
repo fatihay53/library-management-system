@@ -61,9 +61,11 @@ async function getAllMembers() {
             <p style="display: inline;">Address: </p><span id="email">${members[i].address}</span>
             <br>
             <div class="float-end">
-                <a href="#" class="btn btn-secondary">Delete</a>
-                <a href="editmember.html#${members[i].memberID}" class="btn btn-secondary" onclick="getMemberByID(${members[i].memberID})">Edit</a>
-                <a href="borrowbook.html#${members[i].memberID}" class="btn btn-secondary">Borrow book</a>
+                <a href="#"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>  
+                <a href="editmember.html#${members[i].memberID}" onclick="getMemberByID(${members[i].memberID})"><img src="/assets/img/edit-button.png" width="30px" height="30px"></a>  
+                <a href="borrowbook.html#${members[i].memberID}"><img src="/assets/img/borrow-book.png" width="30px" height="30px"></a>  
+                <a href="returnbook.html#${members[i].memberID}"><img src="/assets/img/return-book.png" width="30px" height="30px"></a>  
+
             </div>
         </div> <!--card body ends here-->
     </div> <!-- Column/Card ends here -->`

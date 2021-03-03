@@ -24,7 +24,7 @@
         style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <!--2A7BBB-->
         <div class="container-fluid">
-            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="#"
+            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="/assets/img/library-icon.png"
                     style="position: fixed; top: 7px; left: 7px;" width="40px" height="40px"></a>
             <!-- <a href="#"><img id="logo" src="Assets/icon.png" style="position: fixed; top: 5px; left: 5px;" width="50px" height="50px">Hello</a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -35,7 +35,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
-                            style="color: brown; font-weight: bold;">Home</a>
+                            style="color: #26A3B4; font-weight: bold;">Home</a>
                     </li>
                 </ul>
             </div>
@@ -49,21 +49,21 @@
             <div class="mb-3">
                 <label for="bookNameInput" class="form-label">Book Name</label>
                 <input name="bookName" type="text" class="form-control" id="bookNameInput"
-                    placeholder="Enter book name">
+                    placeholder="Enter book name" required>
             </div>
             <div class="mb-3">
                 <label for="authorInput" class="form-label">Author</label>
-                <input name="author" type="text" class="form-control" id="authorInput" placeholder="Enter Author name">
+                <input name="author" type="text" class="form-control" id="authorInput" placeholder="Enter Author name" required>
             </div>
             <div class="mb-3">
                 <label for="publishYearInput" class="form-label">Publish Year</label>
                 <input name="publishingYear" type="number" class="form-control" id="publishYearInput"
                     placeholder="Enter Publish Year" maxlength="4"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
             </div>
             <div class="mb-3">
                 <label for="categoryInput" class="form-label">Category</label>
-                <select name="categoryID" class="form-select" aria-label="Default select example" id="categoryOptions">
+                <select name="categoryID" class="form-select" aria-label="Default select example" id="categoryOptions" required>
                     <option value="" selected>Choose a category name</option>
                     <!-- <option selected>Choose A Category Name</option>
                     <option value="1">One</option>
@@ -71,7 +71,7 @@
                     <option value="3">Three</option> -->
                 </select>
             </div>
-            <button type="submit" class="btn btn-secondary">Save</button>
+            <button type="submit" class="btn btn-secondary" style="background-color: #26A3B4;">Save</button>
         </form>
     </div>
 

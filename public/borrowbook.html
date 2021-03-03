@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
         crossorigin="anonymous"></script>
+        <!--moment js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!--bootstrap JS below-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <title>Select a book</title>
@@ -18,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <!--2A7BBB-->
         <div class="container-fluid">
-            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="#"
+            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="/assets/img/library-icon.png"
                     style="position: fixed; top: 7px; left: 7px;" width="40px" height="40px"></a>
             <!-- <a href="#"><img id="logo" src="Assets/icon.png" style="position: fixed; top: 5px; left: 5px;" width="50px" height="50px">Hello</a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -30,7 +32,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
-                            style="color: brown; font-weight: bold;">Home</a>
+                            style="color: #26A3B4; font-weight: bold;">Home</a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +71,7 @@
         document.querySelector('#availableList').innerHTML += 
         `<li class="list-group-item"><span id="bookID" hidden>${availableBooks[i].bookID}</span><b>Book Name:</b> ${availableBooks[i].bookName}  
             <b>Author:</b> ${availableBooks[i].author} <b>Category:</b> ${availableBooks[i].categoryName} <b>Publishing Year:</b> ${availableBooks[i].publishingYear}  
-            <a class="btn btn-secondary float-end" onClick={updateBook(${availableBooks[i].bookID})}>Select</a></li>`
+            <a class="btn btn-secondary float-end" onClick={updateBook(${availableBooks[i].bookID})} style="background-color: #26A3B4">Select</a></li>`
         }
     }
 
@@ -77,12 +79,19 @@
     async function updateBook(BookID){
         const memeberID = getMemberByIDToBorrow();
         const bookID = JSON.stringify(BookID)
+        const borrow_date = JSON.stringify(moment().format("YYYY/MM/DD"));
+
         // const bookID = document.querySelector("#bookID").innerHTML;
         console.log(`memberID is ${memeberID}`)
         console.log(`Book id is ${bookID}`)
+        console.log(`Book id is ${borrow_date}`)
 
-        const bookData = {bookID: bookID, memberID:memeberID}
+        const bookData = {bookID: bookID, memberID:memeberID, borrow_date:borrow_date}
         const result = await fetchJSON(`/api/borrow`,'put', bookData)
+        if(result.status == true){
+            window.location.replace("/index.html")
+        }
+        
     }
 
 

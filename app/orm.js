@@ -13,8 +13,8 @@ async function viewCategories() {
 async function addCategory(input) {
     return db.query('INSERT INTO category (categoryName,categoryDes) values (?,?)', [input.categoryName, input.categoryDes])
 }
-async function getCategory(id){
-return await db.query(`SELECT * FROM category where categoryID=${id}`)
+async function getCategory(id) {
+    return await db.query(`SELECT * FROM category where categoryID=${id}`)
 }
 
 async function deleteCategory(id) {
@@ -80,9 +80,22 @@ async function getMember(id) {
 
 // =======================================Faisal=================================
 
+// update when member returns book
+
+async function returnBook(bookID) {
+    return db.query(`update book set memberID = null, borrow_date = null where bookID = ${bookID};`)
+}
+
+
+// get borrowed books by memberID
+
+async function getBorrowedBooksByMemberID(memberID) {
+    return db.query(`SELECT bookID, bookName, author, DATE_FORMAT(borrow_date, "%W %M %e %Y") as borrow_date from book where memberID = ${memberID}`)
+}
+
 // Update book when members borrows
-async function borrowBook(bookID, memberID) {
-    return db.query(`update book set memberID = ${memberID} where bookID = ${bookID};`)
+async function borrowBook(bookID, memberID, borrow_date) {
+    return db.query(`update book set memberID = ${memberID}, borrow_date = ${borrow_date} where bookID = ${bookID};`)
 }
 // to get all member from the database
 async function getMembers() {
@@ -119,6 +132,6 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember,getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { returnBook, getBorrowedBooksByMemberID, borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember, getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
 
 
