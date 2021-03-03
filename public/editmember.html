@@ -65,7 +65,7 @@
         </form>
     </div>
 
-    <script src="./assets/script.js"></script>
+    <!-- <script src="./assets/script.js"></script> -->
 
     <script>
         const memeberID=location.hash.substr(1)
@@ -74,10 +74,8 @@
         form.setAttribute('action', `/api/member/${memeberID}/update`)
 
         async function getMemberByID(){
-            
             console.log(memeberID)
             const member = await fetch(`/api/member/${memeberID}` ).then( r=>r.json() )
-
             document.querySelector('#memberID').innerHTML = member[0].memeberID;
             document.querySelector('#firstNameInput').value = member[0].firstName;
             document.querySelector('#lastNameInput').value = member[0].lastName;

@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'password123')
+const db = require('./connection')('library_managment_system', 'Siyuan1993!')
 
 
 
@@ -94,12 +94,10 @@ async function addMember(data) {
     let result = await db.query(
         'INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES (?,?,?,?,?)',
         [data.firstName, data.lastName, data.phoneNumber, data.email, data.address])
-    console.log(result)
 }
 
 // ===================== update number ----George ============================
 async function updateMember(id, data) {
-    console.log('before query')
     let result = await db.query(
         `
         UPDATE member
@@ -107,7 +105,11 @@ async function updateMember(id, data) {
         WHERE memberID = ${id};
         `
     )
-    console.log('after query')
+}
+
+// -------- delete member (George) --------
+async function deleteMember(id) {
+    return await db.query(`DELETE FROM member WHERE memberID=${id};`)
 }
 // ================================= Member End ==============================
 
@@ -116,6 +118,6 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember,getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember,getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
 
 
