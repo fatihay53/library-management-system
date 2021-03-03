@@ -55,8 +55,9 @@ app.delete('/api/member/:id', function (req, res) {
     
     const memberId = req.params.id
     console.log(`[deleteMember]: ${memberId}`)
-    orm.deleteMember(memberId)
-    res.send('/allmembers.html')
+    let result = orm.deleteMember(memberId)
+    res.send(result)
+
 })
 // ======================== Member End ==============================
 
@@ -68,11 +69,12 @@ app.delete('/api/member/:id', function (req, res) {
 
 app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
     const memberID = req.params.memberID
-
+    
     const books = await orm.getBorrowedBooksByMemberID(memberID)
     console.log("book is found")
     res.send(books)
 })
+
 
 
 // app.use(function (req, res) {
@@ -84,9 +86,10 @@ app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
 app.put("/api/borrow", async function (req, res) {
     const bookID = req.body.bookID.trim();
     const memberID = req.body.memberID.trim();
-    const borrow_date = req.body.borrow_date.trim();
-    console.log(bookID, memberID, borrow_date)
-    const result = await orm.borrowBook(bookID, memberID, borrow_date)
+    console.log(memberID)
+    const borrowDate = req.body.borrowDate.trim();
+    console.log(bookID, memberID, borrowDate)
+    const result = await orm.borrowBook(bookID, memberID, borrowDate)
 
     console.log("book has been updated")
     // windows.location.href = "/index.html"

@@ -61,7 +61,7 @@ async function getAllMembers() {
             <p style="display: inline;">Address: </p><span id="email">${members[i].address}</span>
             <br>
             <div class="float-end">
-                <a href="#"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>  
+                <a href="#" onclick="deleteMember(${members[i].memberID})"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>  
                 <a href="editmember.html#${members[i].memberID}" onclick="getMemberByID(${members[i].memberID})"><img src="/assets/img/edit-button.png" width="30px" height="30px"></a>  
                 <a href="borrowbook.html#${members[i].memberID}"><img src="/assets/img/borrow-book.png" width="30px" height="30px"></a>  
                 <a href="returnbook.html#${members[i].memberID}"><img src="/assets/img/return-book.png" width="30px" height="30px"></a>  
@@ -116,7 +116,10 @@ async function getAllCategories() {
     })
 }
 
+
 getAllCategories()
+
+
 
 //                          UPDATE CATEGORY
 async function deleteCategory(id) {
