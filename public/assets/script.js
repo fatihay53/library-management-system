@@ -20,7 +20,7 @@ getBookInfo()
 // =========================== Edit book ================================
 async function editBook() {
     const editData = {
-        headers: {'Content-Type': 'application/json' }, 
+        headers: { 'Content-Type': 'application/json' },
         method: 'get'
     }
     const data = await fetch(`api/updatebook/${id}`).then(r => r.json())
@@ -71,29 +71,43 @@ async function getAllMembers() {
 }
 getAllMembers()
 
+//                  GET ALL CATEGORIES
 
 async function getAllCategories() {
     const categories = await fetch('/api/categories').then(r => r.json())
-    
+
     document.querySelector('#categoryList').innerHTML = ''
     categories.forEach(data => {
-        document.querySelector('#categoryList').innerHTML += `<div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;">
+        document.querySelector('#categoryList').innerHTML += ` <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;">
         <!-- card starts here-->
         <div class="card-header">
-        
+
             Category ID: <span id="categoryID">${data.categoryID}</span>
         </div>
         <div class="card-body">
-            <p style="display: inline;">Category Name: </p><span id="categoryName">${data.categoryName}</span>
-            <br>
-            <p style="display: inline;">Category Description: </p><span id="categoryDes">${data.categoryDes}</span>
-            <br>       
-            <div class="float-end">
-            <button onClick="deleteCategory('${data.categoryID}')" class="card-link btn btn-danger btn-sm">Delete</button>
-            <a href="editcategory.html#${data.categoryID}" class="card-link btn btn-primary btn-sm">Edit</a>
-                
+            <div class="row">
+                <div class="col-10">
+                    <p id="categoryNameId" style="display: inline;">Category Name: </p><span
+                        id="categoryName">${data.categoryName}</span>
+                    <br>
+                    <p id="categoryDesId" style="display: inline;">Category Description: </p><span
+                        id="categoryDes">${data.categoryDes}  </span>
+                    <br>
+                </div>
+                <div class="col-2 float-end " style="margin-top: 15px">
+                    <div class="mb-2">
+                        <button onClick="deleteCategory('${data.categoryID}')"
+                            class="card-link btn btn-outline-danger btn-sm">Delete</button>
+                        </div>
+                        <a href="editcategory.html#${data.categoryID}"
+                            class="card-link btn btn-outline-info btn-sm " style="width: 58px;">Edit</a>
+                   
+                </div>
+
             </div>
-          
+
+
+
         </div>
         <!--card body ends here-->
     </div> <!-- Column/Card ends here -->`
@@ -115,42 +129,19 @@ async function deleteCategory(id) {
 }
 
 //                      EDIT CATEGORY
-const categoryID=location.hash.substr(1)
+const categoryID = location.hash.substr(1)
 const form = document.querySelector('#editForm')
 
 form.setAttribute('action', `/api/category/${categoryID}/update`)
 
-async function getcategoryByID(){
-    
-   
-    const categoryList = await fetch(`/api/category/${categoryID}` ).then( r=>r.json() )
+async function getcategoryByID() {
+
+
+    const categoryList = await fetch(`/api/category/${categoryID}`).then(r => r.json())
     console.log(categoryList)
-    
+
     document.querySelector('#categoryNameInput').value = categoryList[0].categoryName;
     document.querySelector('#categoryDesArea').value = categoryList[0].categoryDes;
 
 }
 getcategoryByID();
-// async function editCategory(id) {
-//     alert(`editing ${id}`)
-//     const fetchOptions = {
-//         headers: { 'Content-Type': 'application/json' },
-//         method: 'put'
-//     }
-//     const result = await fetch(`/api/updatecategory/${id}`, fetchOptions).then(r => r.json())
-//     getAllCategories()
-// }
-
-
-
-
-    // const editData = {
-    //     headers: { 'Content-Type': 'application/json' },
-    //     method: 'get',
-
-    // }
-    // const result = await fetch(`/api/contact/${id}`, editData).then(res => res.json())
-    // document.getElementById('firstName').value = result[0].first_name
-    // document.getElementById('lastName').value = result[0].last_name
-    // document.getElementById('phoneNumber').value = result[0].phone_number
-

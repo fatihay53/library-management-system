@@ -25,6 +25,7 @@ async function deleteCategory(id) {
 
 }
 
+
 async function updateCategory(id, input) {
     return db.query(`UPDATE category SET categoryName = '${input.categoryName}', categoryDes='${input.categoryDes}' WHERE categoryID = ${id}`)
 }

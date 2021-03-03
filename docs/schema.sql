@@ -21,8 +21,8 @@ publishingYear int(4),
 memberID int null ,
 FOREIGN KEY(memberID) REFERENCES member(memberID),
 categoryID int null,
-FOREIGN KEY(categoryID) REFERENCES category(categoryID),
-borrow_date date
+FOREIGN KEY(categoryID) REFERENCES category(categoryID) on delete set null,
+borrowDate date
 );
 
 create table category (

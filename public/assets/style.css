@@ -8,3 +8,11 @@
   /* padding: 10px; */
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#categoryDes:hover,#categoryName:hover {
+  color: red;
+}
+
+#categoryNameId:hover,#categoryDesId:hover,.card-header:hover {
+  color: blue;
+}
