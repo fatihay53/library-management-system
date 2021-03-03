@@ -20,7 +20,8 @@ app.get( '/api/members', async function( req, res ){
     res.send(membersList)
 })
 
-// to get memeber info by passing memberID
+// to get memeber info by passing 
+
 app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
     const member = await orm.getMember( id )
@@ -95,14 +96,22 @@ app.delete('/api/deletecategory/:id', async (req, res) => {
     let result = await orm.deleteCategory(id)
     res.send(result)
 
-
 })
 //             update Category
-app.put('/api/updatecategory/:id', async (req, res) => {
+app.post('/api/category/:id/update', async (req, res) => {
     let data = req.body
-    let id = req.params.id
+    let id = parseInt(req.params.id)
     await orm.updateCategory(id, data)
+    res.redirect('/allcategory.html')
 
+})
+
+app.get('/api/category/:id', async (req,res)=>{
+    let id = req.params.id
+ 
+    let result = await orm.getCategory(id)
+    // console.log(result)
+    res.send(result)
 })
 
 //              category GET list

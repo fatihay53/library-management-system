@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'rootroot')
+const db = require('./connection')('library_managment_system', 'password123')
 
 
 
@@ -13,7 +13,9 @@ async function viewCategories() {
 async function addCategory(input) {
     return db.query('INSERT INTO category (categoryName,categoryDes) values (?,?)', [input.categoryName, input.categoryDes])
 }
-
+async function getCategory(id){
+return await db.query(`SELECT * FROM category where categoryID=${id}`)
+}
 
 async function deleteCategory(id) {
     await db.query(`DELETE FROM category WHERE categoryID=${id}`)
@@ -24,7 +26,7 @@ async function deleteCategory(id) {
 }
 
 async function updateCategory(id, input) {
-    return db.query(`UPDATE category SET categoryName = '${input.categoryName}', categoryDes='${input.categoryDes}' WHERE id = ${id}`)
+    return db.query(`UPDATE category SET categoryName = '${input.categoryName}', categoryDes='${input.categoryDes}' WHERE categoryID = ${id}`)
 }
 
 //==================================end==================================================
@@ -114,6 +116,6 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember,getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
 
 

@@ -20,7 +20,7 @@ author varchar(100),
 publishingYear int(4),
 memberID int null ,
 FOREIGN KEY(memberID) REFERENCES member(memberID),
-categoryID int,
+categoryID int null,
 FOREIGN KEY(categoryID) REFERENCES category(categoryID),
 borrow_date date
 );
