@@ -2,6 +2,7 @@ const db = require('./connection')('library_managment_system', 'rootroot')
 
 
 
+
 // ====================fatih=============================
 
 //=================//CATEGORY============================
@@ -28,21 +29,9 @@ async function updateCategory(id, input) {
 
 //==================================end==================================================
 
-// ===============================george==================================================
-// the pramater is a object {memberID, firstName, lastName, phoneNum, email, address}
-async function addMember(data) {
-    let result = await db.query('INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES (?,?,?,?,?)',
-        [data.firstName, data.lastName, data.phoneNumber, data.email, data.address])
-    console.log(result)
-}
-// ================================end==================================================
 
 
-// =======================================Faisal==========================================
-// to get all member from the database
-async function getMembers() {
-    return db.query("SELECT * FROM member")
-}
+
 
 //===========================Books=======================================
 
@@ -72,13 +61,16 @@ async function viewBookName() {
 }
 async function viewBookCategory() {
     return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
-}  // =======================================Faisal==========================================
+}
+// ==================================== Member ======================================
+// =======================================Faisal==========================================
 // to return a record by passing memberID
 async function getMember(id) {
     return db.query(`SELECT * FROM member where memberID = ${id}`)
 }
 // =======================================Faisal==========================================
 // to return a record by passing memberID
+
 async function getMember(id) {
     return db.query(`SELECT * FROM member where memberID = ${id}`)
 }
@@ -89,9 +81,39 @@ async function getMember(id) {
 async function borrowBook(bookID, memberID) {
     return db.query(`update book set memberID = ${memberID} where bookID = ${bookID};`)
 }
+// to get all member from the database
+async function getMembers() {
+    return db.query("SELECT * FROM member")
+}
+
+// the pramater is a object {firstName, lastName, phoneNum, email, address}
+// ---- George ----
+async function addMember(data) {
+    let result = await db.query(
+        'INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES (?,?,?,?,?)',
+        [data.firstName, data.lastName, data.phoneNumber, data.email, data.address])
+    console.log(result)
+}
+
+// ===================== update number ----George ============================
+async function updateMember(id, data) {
+    console.log('before query')
+    let result = await db.query(
+        `
+        UPDATE member
+        SET firstName='${data.firstName}',lastName='${data.lastName}',phoneNumber=${data.phoneNumber},email='${data.email}',address='${data.address}'
+        WHERE memberID = ${id};
+        `
+    )
+    console.log('after query')
+}
+// ================================= Member End ==============================
+
 
 async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+
+

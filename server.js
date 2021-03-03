@@ -7,12 +7,14 @@ const PORT = process.env.PORT || 8080
 
 // will share any static html files with the browser
 app.use(express.static('public'))
-
 // accept incoming POST requests
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/api/members', async function (req, res) {
+
+// ======================= Member ===================================
+// show all members
+app.get( '/api/members', async function( req, res ){
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
@@ -21,25 +23,35 @@ app.get('/api/members', async function (req, res) {
 // to get memeber info by passing memberID
 app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
-
-    const member = await orm.getMember(id)
-
-    res.send(member)
+    const member = await orm.getMember( id )
+    res.send( member)
 })
 
+// add new member
 app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
     await orm.addMember(rawData)
-    // send a respond
     res.redirect('/index.html')
 })
 
+// edit a member whose id is 'memberID'
+app.post('/api/member/:memberID/update', function(req, res) {
+    console.log('catching update url...')
+    const id = parseInt(req.params.memberID)
+    const data = req.body
+    console.log(typeof(id), data)
+    orm.updateMember(id, data)
+    res.redirect('/index.html')
+})
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
 })
+// ======================== Member End ==============================
+
+
 //==================== Book ======================
 
 // Update book when member borrows  - Faisal
@@ -64,8 +76,6 @@ app.get('/api/categoriesList', async function (req, res) {
     console.log(`[GET /api/quote] categoriesList`)
     res.send(categoriesList)
 })
-
-
 
 
 //=====================CATEGORY====================
