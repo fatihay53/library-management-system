@@ -33,7 +33,7 @@ app.get('/api/member/:memberID', async function (req, res) {
 app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
     await orm.addMember(rawData)
-    res.redirect('/index.html')
+    res.redirect('/allmembers.html')
 })
 
 // edit a member whose id is 'memberID'
@@ -41,15 +41,22 @@ app.post('/api/member/:memberID/update', function (req, res) {
     console.log('catching update url...')
     const id = parseInt(req.params.memberID)
     const data = req.body
-    console.log(typeof (id), data)
     orm.updateMember(id, data)
-    res.redirect('/index.html')
+    res.redirect('/allmembers.html')
 })
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
+})
+
+app.delete('/api/member/:id', function (req, res) {
+    
+    const memberId = req.params.id
+    console.log(`[deleteMember]: ${memberId}`)
+    orm.deleteMember(memberId)
+    res.send('/allmembers.html')
 })
 // ======================== Member End ==============================
 
