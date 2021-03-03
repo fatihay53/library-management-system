@@ -96,7 +96,7 @@ async function getAllMembers() {
             <div class="float-end">
                 <a href="#" class="btn btn-secondary">Delete</a>
                 <a href="editmember.html#${members[i].memberID}" class="btn btn-secondary" onclick="getMemberByID(${members[i].memberID})">Edit</a>
-                <a href="#" class="btn btn-secondary">Borrow book</a>
+                <a href="borrowbook.html#${members[i].memberID}" class="btn btn-secondary">Borrow book</a>
             </div>
         </div> <!--card body ends here-->
     </div> <!-- Column/Card ends here -->`

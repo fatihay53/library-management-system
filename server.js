@@ -14,11 +14,7 @@ app.use(express.json())
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
-<<<<<<< HEAD
     console.log(`[GET /api/quote] membersList`)
-=======
-
->>>>>>> branch-Fatih
     res.send(membersList)
 })
 
@@ -45,6 +41,23 @@ app.get('/api/members', async function (req, res) {
     res.send(membersList)
 })
 //==================== Book ======================
+
+// Update book when member borrows  - Faisal
+
+app.put("/api/borrow", async function (req, res) {
+    const bookID = req.body.bookID.trim();
+    const memberID = req.body.memberID.trim();
+    console.log(bookID, memberID)
+    const result = await orm.borrowBook(bookID, memberID)
+    console.log("book has been updated")
+    res.redirect('/index.html')
+});
+
+app.get('/api/availablebooks', async function (req, res) {
+    const availableBooksList = await orm.getAvailableBook()
+    console.log(`[GET /api/quote] availableBooksList`)
+    res.send(availableBooksList)
+})
 
 app.get('/api/categoriesList', async function (req, res) {
     const categoriesList = await orm.getCategoriesList()

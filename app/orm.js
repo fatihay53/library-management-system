@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'password123')
+const db = require('./connection')('library_managment_system', 'rootroot')
 
 
 
@@ -45,6 +45,13 @@ async function getMembers() {
 }
 
 //===========================Books=======================================
+
+async function getAvailableBook() {
+    return db.query(`select B.bookID as bookID, B.bookName as bookName, B.author as author, 
+    B.publishingYear as publishingYear, C.categoryName as categoryName from book B 
+    left join category C  on B.categoryID = C.categoryID where B.memberID IS NULL;`)
+}
+
 async function addBook(input) {
     return db.query('INSERT INTO book (bookName,author,publishingYear,categoryID) values (?,?,?,?)',
         [input.bookName, input.author, input.publishingYear, input.categoryID])
@@ -76,9 +83,15 @@ async function getMember(id) {
     return db.query(`SELECT * FROM member where memberID = ${id}`)
 }
 
+// =======================================Faisal=================================
+
+// Update book when members borrows
+async function borrowBook(bookID, memberID) {
+    return db.query(`update book set memberID = ${memberID} where bookID = ${bookID};`)
+}
 
 async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { borrowBook, getAvailableBook, viewCategories, getCategoriesList, addMember, getMembers, getMember, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }

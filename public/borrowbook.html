@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <!--bootstrap JS below-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <title>All members</title>
+    <title>Select a book</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -37,40 +37,64 @@
         </div>
     </nav>
     <div class="container">
-        <div id="membersList" class="row">
-            <!-- <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> 
-                <div class="card-header">
-                Member ID: <span id="memberID">101</span>
-                </div>
-                <div class="card-body">
-                    <p style="display: inline;">First Name: </p><span id="firstName">Faisal</span>
-                    <br>
-                    <p style="display: inline;">Last Name: </p><span id="lastName">Nour</span>
-                    <br>
-                    <p style="display: inline;">Phone Number: </p><span id="phoneNumber">6476476476</span>
-                    <br>
-                    <p style="display: inline;">Email: </p><span id="email">faisalskhalifa@gmail.com</span>
-                    <br>
-                    <p style="display: inline;">Address: </p><span id="email">111- 11 Main Street, Toronto, ON X1X Z2Z</span>
-                    <br>
-                    <div class="float-end">
-                        <a href="#" class="btn btn-secondary">Delete</a>
-                        <a href="editmember.html" class="btn btn-secondary" onclick="">Edit</a>
-                        <a href="#" class="btn btn-secondary">Borrow book</a>
-                        <a>Test</a>
-                    </div>
-                </div> 
-            </div> Column/Card ends here  -->
-        </div> <!--end of row--> 
-    </div> <!--end of container-->
+        <p>List of available books</p>
+        <ul class="list-group" id="availableList">
+            <!-- <li class="list-group-item"><span id="bookID" hidden>1</span>Book Name: XYZ  Author: Unknown  Publishing Year: 1990  <a class="btn btn-secondary float-end">Select</a></li> -->
+            <!-- <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item">And a fifth one</li> -->
+          </ul>
+    </div>
 
 
-    <script type="text/javascript" src="./assets/script.js">
+    <script>
 
-        // <script>
-    
+    function fetchJSON( url, method='get', data={} ){
+    const fetchOptions = {
+        method,
+        headers: { 'Content-Type': 'application/json' },					
+    }
+    if( method==='post' || method==='put' )
+        fetchOptions.body = JSON.stringify(data)
 
-        
+    return fetch(url, fetchOptions).then( r=>r.json() )
+    }
+
+    async function getAllAvailableBooks() {
+    const availableBooks = await fetch('/api/availablebooks').then(r => r.json())
+
+    // document.querySelector('#availableList').innerHTML = ''
+    for (i = 0; i < availableBooks.length; i++) {
+        document.querySelector('#availableList').innerHTML += 
+        `<li class="list-group-item"><span id="bookID" hidden>${availableBooks[i].bookID}</span><b>Book Name:</b> ${availableBooks[i].bookName}  
+            <b>Author:</b> ${availableBooks[i].author} <b>Category:</b> ${availableBooks[i].categoryName} <b>Publishing Year:</b> ${availableBooks[i].publishingYear}  
+            <a class="btn btn-secondary float-end" onClick={updateBook(${availableBooks[i].bookID})}>Select</a></li>`
+        }
+    }
+
+
+    async function updateBook(BookID){
+        const memeberID = getMemberByIDToBorrow();
+        const bookID = JSON.stringify(BookID)
+        // const bookID = document.querySelector("#bookID").innerHTML;
+        console.log(`memberID is ${memeberID}`)
+        console.log(`Book id is ${bookID}`)
+
+        const bookData = {bookID: bookID, memberID:memeberID}
+        const result = await fetchJSON(`/api/borrow`,'put', bookData)
+    }
+
+
+ function getMemberByIDToBorrow(){
+    let memeberID=location.hash.substr(1)
+    return memeberID;
+
+}
+getMemberByIDToBorrow();
+
+
+    getAllAvailableBooks() 
     </script>
 </body>
 </html>
