@@ -14,9 +14,10 @@ app.use(express.json())
 
 // ======================= Member ===================================
 // show all members
-app.get( '/api/members', async function( req, res ){
+app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
+   
     res.send(membersList)
 })
 
@@ -24,8 +25,8 @@ app.get( '/api/members', async function( req, res ){
 
 app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
-    const member = await orm.getMember( id )
-    res.send( member)
+    const member = await orm.getMember(id)
+    res.send(member)
 })
 
 // add new member
@@ -36,11 +37,11 @@ app.post('/api/addmember/member', async (req, res) => {
 })
 
 // edit a member whose id is 'memberID'
-app.post('/api/member/:memberID/update', function(req, res) {
+app.post('/api/member/:memberID/update', function (req, res) {
     console.log('catching update url...')
     const id = parseInt(req.params.memberID)
     const data = req.body
-    console.log(typeof(id), data)
+    console.log(typeof (id), data)
     orm.updateMember(id, data)
     res.redirect('/index.html')
 })
@@ -98,20 +99,21 @@ app.delete('/api/deletecategory/:id', async (req, res) => {
 
 })
 //             update Category
+
 app.post('/api/category/:id/update', async (req, res) => {
+
     let data = req.body
     let id = req.params.id
-    let search = await orm.getBookCategoryID(id)
-    if (search.categoryID === null){
-    let result = await orm.updateCategory(id, data) }
+    let result = await orm.updateCategory(id, data)
 
-    else{ alert(`Can not edit this Category`)} 
-    })   
-app.get('/api/category/:id', async (req,res)=>{
+    res.redirect('/allcategory.html')
+    
+})
+
+app.get('/api/category/:id', async (req, res) => {
     let id = req.params.id
- 
     let result = await orm.getCategory(id)
-    // console.log(result)
+    console.log(result)
     res.send(result)
 })
 

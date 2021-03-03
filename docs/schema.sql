@@ -20,12 +20,8 @@ author varchar(100),
 publishingYear int(4),
 memberID int null ,
 FOREIGN KEY(memberID) REFERENCES member(memberID),
-<<<<<<< HEAD
-categoryID int,
-=======
 categoryID int null,
->>>>>>> branch-Developer
-FOREIGN KEY(categoryID) REFERENCES category(categoryID),
+FOREIGN KEY(categoryID) REFERENCES category(categoryID) on delete set null,
 borrow_date date
 );
 
