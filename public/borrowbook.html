@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <!--Bootstrap script to make toggle work in navbar-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+    <!--bootstrap JS below-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <title>Select a book</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <!--2A7BBB-->
+        <div class="container-fluid">
+            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="#"
+                    style="position: fixed; top: 7px; left: 7px;" width="40px" height="40px"></a>
+            <!-- <a href="#"><img id="logo" src="Assets/icon.png" style="position: fixed; top: 5px; left: 5px;" width="50px" height="50px">Hello</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" dir="rtl">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
+                            style="color: brown; font-weight: bold;">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <p>List of available books</p>
+        <ul class="list-group" id="availableList">
+            <!-- <li class="list-group-item"><span id="bookID" hidden>1</span>Book Name: XYZ  Author: Unknown  Publishing Year: 1990  <a class="btn btn-secondary float-end">Select</a></li> -->
+            <!-- <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item">And a fifth one</li> -->
+          </ul>
+    </div>
+
+
+    <script>
+
+    function fetchJSON( url, method='get', data={} ){
+    const fetchOptions = {
+        method,
+        headers: { 'Content-Type': 'application/json' },					
+    }
+    if( method==='post' || method==='put' )
+        fetchOptions.body = JSON.stringify(data)
+
+    return fetch(url, fetchOptions).then( r=>r.json() )
+    }
+
+    async function getAllAvailableBooks() {
+    const availableBooks = await fetch('/api/availablebooks').then(r => r.json())
+
+    // document.querySelector('#availableList').innerHTML = ''
+    for (i = 0; i < availableBooks.length; i++) {
+        document.querySelector('#availableList').innerHTML += 
+        `<li class="list-group-item"><span id="bookID" hidden>${availableBooks[i].bookID}</span><b>Book Name:</b> ${availableBooks[i].bookName}  
+            <b>Author:</b> ${availableBooks[i].author} <b>Category:</b> ${availableBooks[i].categoryName} <b>Publishing Year:</b> ${availableBooks[i].publishingYear}  
+            <a class="btn btn-secondary float-end" onClick={updateBook(${availableBooks[i].bookID})}>Select</a></li>`
+        }
+    }
+
+
+    async function updateBook(BookID){
+        const memeberID = getMemberByIDToBorrow();
+        const bookID = JSON.stringify(BookID)
+        // const bookID = document.querySelector("#bookID").innerHTML;
+        console.log(`memberID is ${memeberID}`)
+        console.log(`Book id is ${bookID}`)
+
+        const bookData = {bookID: bookID, memberID:memeberID}
+        const result = await fetchJSON(`/api/borrow`,'put', bookData)
+    }
+
+
+ function getMemberByIDToBorrow(){
+    let memeberID=location.hash.substr(1)
+    return memeberID;
+
+}
+getMemberByIDToBorrow();
+
+
+    getAllAvailableBooks() 
+    </script>
+</body>
+</html>

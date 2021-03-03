@@ -7,48 +7,76 @@ const PORT = process.env.PORT || 8080
 
 // will share any static html files with the browser
 app.use(express.static('public'))
-
 // accept incoming POST requests
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/api/members', async function (req, res) {
+
+// ======================= Member ===================================
+// show all members
+app.get( '/api/members', async function( req, res ){
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
 })
 
-// to get memeber info by passing memberID
+// to get memeber info by passing 
+
 app.get('/api/member/:memberID', async function (req, res) {
     const id = req.params.memberID
-
-    const member = await orm.getMember(id)
-
-    res.send(member)
+    const member = await orm.getMember( id )
+    res.send( member)
 })
 
+// add new member
 app.post('/api/addmember/member', async (req, res) => {
     const rawData = req.body
     await orm.addMember(rawData)
-    // send a respond
     res.redirect('/index.html')
 })
 
+// edit a member whose id is 'memberID'
+app.post('/api/member/:memberID/update', function(req, res) {
+    console.log('catching update url...')
+    const id = parseInt(req.params.memberID)
+    const data = req.body
+    console.log(typeof(id), data)
+    orm.updateMember(id, data)
+    res.redirect('/index.html')
+})
 
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
     console.log(`[GET /api/quote] membersList`)
     res.send(membersList)
 })
+// ======================== Member End ==============================
+
+
 //==================== Book ======================
+
+// Update book when member borrows  - Faisal
+
+app.put("/api/borrow", async function (req, res) {
+    const bookID = req.body.bookID.trim();
+    const memberID = req.body.memberID.trim();
+    console.log(bookID, memberID)
+    const result = await orm.borrowBook(bookID, memberID)
+    console.log("book has been updated")
+    res.redirect('/index.html')
+});
+
+app.get('/api/availablebooks', async function (req, res) {
+    const availableBooksList = await orm.getAvailableBook()
+    console.log(`[GET /api/quote] availableBooksList`)
+    res.send(availableBooksList)
+})
 
 app.get('/api/categoriesList', async function (req, res) {
     const categoriesList = await orm.getCategoriesList()
     console.log(`[GET /api/quote] categoriesList`)
     res.send(categoriesList)
 })
-
-
 
 
 //=====================CATEGORY====================
@@ -68,10 +96,9 @@ app.delete('/api/deletecategory/:id', async (req, res) => {
     let result = await orm.deleteCategory(id)
     res.send(result)
 
-
 })
 //             update Category
-app.put('/api/updatecategory/:id', async (req, res) => {
+app.post('/api/category/:id/update', async (req, res) => {
     let data = req.body
     let id = req.params.id
     let search = await orm.getBookCategoryID(id)
@@ -79,7 +106,13 @@ app.put('/api/updatecategory/:id', async (req, res) => {
     let result = await orm.updateCategory(id, data) }
 
     else{ alert(`Can not edit this Category`)} 
-
+    })   
+app.get('/api/category/:id', async (req,res)=>{
+    let id = req.params.id
+ 
+    let result = await orm.getCategory(id)
+    // console.log(result)
+    res.send(result)
 })
 
 //              category GET list
