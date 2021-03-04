@@ -19,7 +19,7 @@ bookName varchar(60),
 author varchar(100),
 publishingYear int(4),
 memberID int null ,
-FOREIGN KEY(memberID) REFERENCES member(memberID),
+FOREIGN KEY(memberID) REFERENCES member(memberID) on delete set null,
 categoryID int null,
 FOREIGN KEY(categoryID) REFERENCES category(categoryID) on delete set null,
 borrowDate date
