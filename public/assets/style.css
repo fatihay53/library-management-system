@@ -1,12 +1,17 @@
 #hero {
-  background-image: url("img/background-picture2.jpg");
+  background-image: url("./img/background-picture2.jpg  ");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: 0px;
-  /* border: 2px solid; */
-  /* padding: 10px; */
+  border: 2px solid;
+  padding: 10px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 100%; 
+}
+body,html{
+  height: 100%;
+  margin: 0%;
 }
 
 #options li a {
@@ -22,6 +27,3 @@
   color: red;
 }
 
-/* #categoryNameId:hover,#categoryDesId:hover,.card-header:hover {
-  color: blue;
-} */
