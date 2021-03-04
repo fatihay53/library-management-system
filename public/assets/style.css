@@ -1,5 +1,5 @@
 #hero {
-  background-image: url("img/background-picture.jpg");
+  background-image: url("img/background-picture2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,10 +9,19 @@
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#categoryDes:hover,#categoryName:hover {
+#options li a {
+  color: white;
+}
+
+#options li a:hover {
+  background-color: #26a3b4;
+}
+
+#categoryDes:hover,
+#categoryName:hover {
   color: red;
 }
 
-#categoryNameId:hover,#categoryDesId:hover,.card-header:hover {
+/* #categoryNameId:hover,#categoryDesId:hover,.card-header:hover {
   color: blue;
-}
+} */
