@@ -6,27 +6,21 @@
 1 - Add members             done
 2 - View members            done
 
-3 - Update members info    need to work on edit button          George
+3 - Update members info    need to work on edit button          done
 
-4 - Delete members          take a look later 
-
+4 - Delete members          take a look later                   done
+5- Search members                                               done
 
 
 // back end done and 
 *** Category
-1 - Add category            done     
-2 - Delete category         take a look later 
-3 - Update category         take a look later 
+1 - Add category                                                done     
+2 - Delete category         take a look later                   done
+3 - Update category         take a look later                   done
 
 
 *** Books
 
-1 - Add books               take a look later                DONE
-2 - Update books info       take a look later                   Faisal
-3 - View books; by members, category or name                take a look later 
-4 - Remove books                                               take a look later               
-
-
-
-bug need to be fix search member by ID
-
+1 - Add books                                                   DONE
+2 - Barrow books info                                          DONE
+4 - Return books                                              done               
