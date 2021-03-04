@@ -56,15 +56,7 @@ async function deleteBooks(id) {
     return db.query(`DELETE FROM book WHERE bookID='${id}'`)
 }
 
-async function viewBookMember() {
-    return db.query('SELECT * FROM book left join member on memberID=book.bookID')
-}
-async function viewBookName() {
-    return db.query('SELECT * FROM book left join member on memberID=book.bookID where member.firstName="XX" ')
-}
-async function viewBookCategory() {
-    return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
-}
+
 // ==================================== Member ======================================
 // =======================================Faisal==========================================
 // to return a record by passing memberID
@@ -132,6 +124,6 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { returnBook, getBorrowedBooksByMemberID, borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember, getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { returnBook, getBorrowedBooksByMemberID, borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember, getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks }
 
 

@@ -150,6 +150,7 @@ app.post('/api/category/:id/update', async (req, res) => {
     
 })
 
+//              category get by ID
 app.get('/api/category/:id', async (req, res) => {
     let id = req.params.id
     let result = await orm.getCategory(id)
@@ -189,24 +190,6 @@ app.delete('api/deletebook/:id', async (req, res) => {
     await orm.deleteBooks(id)
 })
 
-//                  viewBook by member
-app.get('api/viewbook/member', async (req, res) => {
-    await orm.viewBookMember()
-})
-
-//                  viewBook by name
-
-app.get('api/viewbook/name', async (req, res) => {
-    await orm.viewBookName()
-    // need parameter for memeberName
-})
-
-//                  viewBook by category
-
-app.get('api/viewbook/category', async (req, res) => {
-    await orm.viewBookCategory()
-    // need parameter for categoryName
-})
 
 // ===================END===================================
 
