@@ -121,6 +121,12 @@ app.get('/api/categoriesList', async function (req, res) {
     res.send(categoriesList)
 })
 
+app.get('/api/book/search/:name', async function (req, res) {
+    const name = req.params.name.trim()
+    console.log("[searchBook] ", name)
+    const bookLst = await orm.searchBook(name)
+    res.send(bookLst)
+})
 
 //=====================CATEGORY====================
 

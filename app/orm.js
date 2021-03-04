@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 const db = require('./connection')('library_managment_system', 'password123')
-=======
-const db = require('./connection')('library_managment_system', 'Winter2021')
->>>>>>> branch-ilias
-
 
 
 
@@ -68,6 +63,11 @@ async function viewBookName() {
 }
 async function viewBookCategory() {
     return db.query('SELECT * FROM book left join category on categoryID=category.categoryID where categoryName="XX" ')
+}
+
+function searchBook(name) {
+    return db.query(
+        `SELECT * FROM book WHERE bookName REGEXP '.*${name}.*'`)
 }
 // ==================================== Member ======================================
 // =======================================Faisal==========================================
@@ -136,6 +136,6 @@ async function getCategoriesList() {
     return db.query("SELECT * FROM category")
 }
 
-module.exports = { returnBook, getBorrowedBooksByMemberID, borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember, getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
+module.exports = { searchBook, returnBook, getBorrowedBooksByMemberID, borrowBook, getAvailableBook, viewCategories, getCategoriesList, updateMember, addMember, getMembers, getMember, deleteMember, getCategory, addCategory, deleteCategory, updateCategory, addBook, updateBook, deleteBooks, viewBookMember, viewBookName, viewBookCategory }
 
 
