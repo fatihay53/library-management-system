@@ -41,7 +41,6 @@ async function editBook() {
 async function getAllMembers() {
     const members = await fetch('/api/members').then(r => r.json())
 
-
     document.querySelector('#membersList').innerHTML = ''
     for (i = 0; i < members.length; i++) {
         document.querySelector('#membersList').innerHTML += `
@@ -98,11 +97,11 @@ async function getAllCategories() {
                 </div>
                 <div class="col-2 float-end " style="margin-top: 15px">
                     <div class="mb-2">
-                        <button onClick="deleteCategory('${data.categoryID}')"
-                            class="card-link btn btn-outline-danger btn-sm">Delete</button>
+                        <a onClick="deleteCategory('${data.categoryID}')"
+                            class="card-link btn btn-outline-danger btn-sm" style="width: 61px;">Delete</a>
                         </div>
                         <a href="editcategory.html#${data.categoryID}"
-                            class="card-link btn btn-outline-info btn-sm " style="width: 58px;">Edit</a>
+                            class="card-link btn btn-outline-light btn-sm " style="width: 61px; color: #26A3B4; border: 1px solid #26A3B4;">Edit</a>
                    
                 </div>
 

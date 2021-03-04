@@ -34,7 +34,15 @@
             <div class="collapse navbar-collapse" id="navbarNav" dir="rtl">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
+                        <a href="allcategory.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="allmembers.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
                             style="color: #26A3B4; font-weight: bold;">Home</a>
                     </li>
                 </ul>
@@ -44,18 +52,18 @@
     <div class="container">
 
         <!--build component here-->
-        <h2>Add new Category</h2>
+        <h2 class="mb-3">Add New Category</h2>
         <form action="/api/addcategory" method="post">
             <div class="mb-3">
                 <label for="categoryNameInput" class="form-label">Category Name</label>
                 <input name="categoryName" type="text" class="form-control" id="categoryNameInput"
-                    placeholder="Enter a Category name">
+                    placeholder="Enter a Category name" required>
             </div>
             <div class="mb-3">
                 <label for="categoryDesArea" class="form-label">Category Description</label>
-                <textarea name="categoryDes" class="form-control" id="categoryDesArea" rows="3"></textarea>
+                <textarea name="categoryDes" class="form-control" id="categoryDesArea" rows="3" required></textarea>
             </div>
-            <button type="submit" class="btn btn-secondary" style="background-color: #26A3B4;">Submit</button>
+            <button type="submit" class="btn btn-outline-light" style="color: #26A3B4; border: 1px solid #26A3B4;">Submit</button>
         </form>
     </div>
 </body>

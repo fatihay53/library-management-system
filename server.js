@@ -16,8 +16,8 @@ app.use(express.json())
 // show all members
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
- 
-   
+
+
     res.send(membersList)
 })
 
@@ -52,7 +52,7 @@ app.get('/api/members', async function (req, res) {
 })
 
 app.delete('/api/member/:id', function (req, res) {
-    
+
     const memberId = req.params.id
     console.log(`[deleteMember]: ${memberId}`)
     let result = orm.deleteMember(memberId)
@@ -69,7 +69,7 @@ app.delete('/api/member/:id', function (req, res) {
 
 app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
     const memberID = req.params.memberID
-    
+
     const books = await orm.getBorrowedBooksByMemberID(memberID)
     console.log("book is found")
     res.send(books)
@@ -86,7 +86,6 @@ app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
 app.put("/api/borrow", async function (req, res) {
     const bookID = req.body.bookID.trim();
     const memberID = req.body.memberID.trim();
-    console.log(memberID)
     const borrowDate = req.body.borrowDate.trim();
     console.log(bookID, memberID, borrowDate)
     const result = await orm.borrowBook(bookID, memberID, borrowDate)
@@ -150,7 +149,7 @@ app.post('/api/category/:id/update', async (req, res) => {
     let result = await orm.updateCategory(id, data)
 
     res.redirect('/allcategory.html')
-    
+
 })
 
 app.get('/api/category/:id', async (req, res) => {

@@ -29,7 +29,15 @@
             <div class="collapse navbar-collapse" id="navbarNav" dir="rtl">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
+                        <a href="allcategory.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="allmembers.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
                             style="color: #26A3B4; font-weight: bold;">Home</a>
                     </li>
                 </ul>
@@ -41,10 +49,11 @@
         
             <div class="mb-3 row">
                 <div class="col-lg-9 col-xl-9 col-md-9 col-9">
-                    <input name="firstName" type="text" class="form-control" id="memberIDInput" placeholder="Enter member ID" required>
+                    <input name="firstName" type="number" class="form-control" id="memberIDInput" placeholder="Enter member ID" maxlength="5"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-outline-secondary" onclick="getMemberByIDSearch()" style="color: #26A3B4; border: 1px solid #26A3B4;">Search</button>
+                    <button type="submit" class="btn btn-outline-light" onclick="getMemberByIDSearch()" style="color: #26A3B4; border: 1px solid #26A3B4;">Search</button>
                 </div>
             </div>        
         <div id="member" class="row">
@@ -81,10 +90,10 @@
             <p style="display: inline;">Address: </p><span id="email">${member[0].address}</span>
             <br>
             <div class="float-end">
-                <a href="#" class="btn btn-secondary">Delete</a>
-                <a href="editmember.html#${member[0].memberID}" class="btn btn-secondary" onclick="getMemberByID(${member[0].memberID})">Edit</a>
-                <a href="borrowbook.html#${member[0].memberID}" class="btn btn-secondary">Borrow book</a>
-                <a href="returnbook.html#${member[0].memberID}" class="btn btn-secondary">Return book</a>
+                <a href="#"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>
+                <a href="editmember.html#${member[0].memberID}" onclick="getMemberByID(${member[0].memberID})"><img src="/assets/img/edit-button.png" width="30px" height="30px"></a>
+                <a href="borrowbook.html#${member[0].memberID}"><img src="/assets/img/borrow-book.png" width="30px" height="30px"></a>
+                <a href="returnbook.html#${member[0].memberID}"><img src="/assets/img/return-book.png" width="30px" height="30px"></a>
 
             </div>
             </div> <!--card body ends here-->
