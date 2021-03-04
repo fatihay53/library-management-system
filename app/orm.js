@@ -1,5 +1,4 @@
-const db = require('./connection')('library_managment_system', 'Siyuan1993!')
-
+const db = require('./connection')('library_managment_system', 'password123')
 
 
 
