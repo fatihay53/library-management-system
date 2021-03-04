@@ -52,7 +52,7 @@
         <!-- search bar: search by book's name -->
         <div class="input-group mb-3">
             <input onkeypress='enterSearch(event)' id='searchBar' type="text" class="form-control" placeholder="Search by book's name" aria-label="Search by book's name" aria-describedby="submitSearch">
-            <button onclick="searchBook()" class="btn btn-secondary" type="button" id="submitSearch" style="background-color: #26A3B4">Search</button>
+            <button onclick="searchBook()" class="btn btn-outline" type="button" id="submitSearch" style="color: #26A3B4; border: 1px solid #26A3B4;">Search</button>
         </div>
 
         <!-- <a class="btn btn-secondary float-end" onClick={updateBook(${bookList[i].bookID})} style="background-color: #26A3B4">Select</a> -->
@@ -93,7 +93,7 @@
                 document.querySelector('#availableList').innerHTML += 
                 `<li class="list-group-item"><span id="bookID" hidden>${availableBooks[i].bookID}</span><b>Book Name:</b> ${availableBooks[i].bookName}  
                     <b>Author:</b> ${availableBooks[i].author} <b>Category:</b> ${availableBooks[i].categoryName} <b>Publishing Year:</b> ${availableBooks[i].publishingYear}  
-                    <a class="btn btn-secondary float-end" onClick={updateBook(${availableBooks[i].bookID})} style="background-color: #26A3B4">Select</a></li>`
+                    <a class="btn btn-outline float-end" onClick={updateBook(${availableBooks[i].bookID})} style="color: #26A3B4; border: 1px solid #26A3B4;">Select</a></li>`
             }
         }
 
