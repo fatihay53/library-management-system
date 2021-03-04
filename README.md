@@ -46,4 +46,4 @@ The following pictures show the web application's appearance and functionality:
 
 ## Live URL of the deployed application:
 
-[please click here]()
+[please click here](https://library-management-system-lms.herokuapp.com/index.html)
