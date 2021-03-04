@@ -41,7 +41,6 @@ async function editBook() {
 async function getAllMembers() {
     const members = await fetch('/api/members').then(r => r.json())
 
-
     document.querySelector('#membersList').innerHTML = ''
     for (i = 0; i < members.length; i++) {
         document.querySelector('#membersList').innerHTML += `
@@ -61,7 +60,7 @@ async function getAllMembers() {
             <p style="display: inline;">Address: </p><span id="email">${members[i].address}</span>
             <br>
             <div class="float-end">
-                <a href="#"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>  
+                <a href="#" onclick="deleteMember(${members[i].memberID})"><img src="/assets/img/delete-button.png" width="30px" height="30px"></a>  
                 <a href="editmember.html#${members[i].memberID}" onclick="getMemberByID(${members[i].memberID})"><img src="/assets/img/edit-button.png" width="30px" height="30px"></a>  
                 <a href="borrowbook.html#${members[i].memberID}"><img src="/assets/img/borrow-book.png" width="30px" height="30px"></a>  
                 <a href="returnbook.html#${members[i].memberID}"><img src="/assets/img/return-book.png" width="30px" height="30px"></a>  
@@ -98,11 +97,11 @@ async function getAllCategories() {
                 </div>
                 <div class="col-2 float-end " style="margin-top: 15px">
                     <div class="mb-2">
-                        <button onClick="deleteCategory('${data.categoryID}')"
-                            class="card-link btn btn-outline-danger btn-sm">Delete</button>
+                        <a onClick="deleteCategory('${data.categoryID}')"
+                            class="card-link btn btn-outline-danger btn-sm" style="width: 61px;">Delete</a>
                         </div>
                         <a href="editcategory.html#${data.categoryID}"
-                            class="card-link btn btn-outline-info btn-sm " style="width: 58px;">Edit</a>
+                            class="card-link btn btn-outline-info btn-sm " style="width: 61px; color: #26A3B4; border: 1px solid #26A3B4;">Edit</a>
                    
                 </div>
 
@@ -116,7 +115,10 @@ async function getAllCategories() {
     })
 }
 
+
 getAllCategories()
+
+
 
 //                          UPDATE CATEGORY
 async function deleteCategory(id) {

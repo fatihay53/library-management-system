@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
     <!--Bootstrap script to make toggle work in navbar-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
         crossorigin="anonymous"></script>
     <!--bootstrap JS below-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
     <title>All members</title>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <nav class="navbar navbar-expand-lg navbar-light"
+        style="background-color:white; margin-bottom: 40px; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <!--2A7BBB-->
         <div class="container-fluid">
-            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo" src="/assets/img/library-icon.png"
-                    style="position: fixed; top: 7px; left: 7px;" width="40px" height="40px"></a>
+            <a id="navbar-brand" class="navbar-brand" href="index.html"><img id="logo"
+                    src="/assets/img/library-icon.png" style="position: fixed; top: 7px; left: 7px;" width="40px"
+                    height="40px"></a>
             <!-- <a href="#"><img id="logo" src="Assets/icon.png" style="position: fixed; top: 5px; left: 5px;" width="50px" height="50px">Hello</a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav" dir="rtl">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a id="btnFavourite" class="nav-link active coloredbutton" href="index.html" aria-current="page"
-                            style="color: brown; font-weight: bold;">Home</a>
+                        <a href="allcategory.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="allmembers.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" id="btnFavourite" class="nav-link active coloredbutton" aria-current="page"
+                            style="color: #26A3B4; font-weight: bold;">Home</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
+        <h2 class="mb-3">Members List</h2>
         <div id="membersList" class="row">
-<<<<<<< HEAD
-            <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> <!-- card starts here-->
-=======
             <!-- <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> 
->>>>>>> branch-Developer
                 <div class="card-header">
                 Member ID: <span id="memberID">101</span>
                 </div>
@@ -63,53 +74,74 @@
                         <a href="#" class="btn btn-secondary">Borrow book</a>
                 </div>
             </div> card body ends here-->
-            </div> <!-- Column/Card ends here --> 
-        </div> <!--end of row--> 
-    </div> <!--end of container-->
+        </div> <!-- Column/Card ends here -->
+    </div>
+    <!--end of row-->
+    </div>
+    <!--end of container-->
 
 
-    <!-- <script type="text/javascript" src="./assets/script.js"></script> -->
+    <script type="text/javascript" src="./assets/script.js"></script>
     <script>
-        
 
-        async function getAllMembers() {
-            const members = await fetch('/api/members').then(r => r.json())
-            document.querySelector('#membersList').innerHTML = ''
-            for (i = 0; i < members.length; i++) {
-                document.querySelector('#membersList').innerHTML += `
-                <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> <!-- card starts here-->
-                    <div class="card-header">
-                    Member ID: <span id="memberID">${members[i].memberID}</span>
-                    </div>
-                    <div class="card-body">
-                        <p style="display: inline;">First Name: </p><span id="firstName">${members[i].firstName}</span>
-                        <br>
-                        <p style="display: inline;">Last Name: </p><span id="lastName">${members[i].lastName}</span>
-                        <br>
-                        <p style="display: inline;">Phone Number: </p><span id="phoneNumber">${members[i].phoneNumber}</span>
-                        <br>
-                        <p style="display: inline;">Email: </p><span id="email">${members[i].email}</span>
-                        <br>
-                        <p style="display: inline;">Address: </p><span id="email">${members[i].address}</span>
-                        <br>
-                        <div class="float-end">
-                            <a href="" onclick="deleteMember(${members[i].memberID})" class="btn btn-secondary">Delete</a>
-                            <a href="editmember.html#${members[i].memberID}" class="btn btn-secondary" onclick="getMemberByID(${members[i].memberID})">Edit</a>
-                            <a href="borrowbook.html#${members[i].memberID}" class="btn btn-secondary">Borrow book</a>
-                        </div>
-                    </div> <!--card body ends here-->
-                </div> <!-- Column/Card ends here -->`
-            }
-        }
-        getAllMembers()
+        // async function getAllMembers() {
+        //     const members = await fetch('/api/members').then(r => r.json())
+        //     document.querySelector('#membersList').innerHTML = ''
+        //     for (i = 0; i < members.length; i++) {
+        //         document.querySelector('#membersList').innerHTML += `
+        //         <div class="card col-xl-5" style="margin-bottom: 20px; margin-right: 30px; margin-left: 20px;"> <!-- card starts here-->
+        //             <div class="card-header">
+        //             Member ID: <span id="memberID">${members[i].memberID}</span>
+        //             </div>
+        //             <div class="card-body">
+        //                 <p style="display: inline;">First Name: </p><span id="firstName">${members[i].firstName}</span>
+        //                 <br>
+        //                 <p style="display: inline;">Last Name: </p><span id="lastName">${members[i].lastName}</span>
+        //                 <br>
+        //                 <p style="display: inline;">Phone Number: </p><span id="phoneNumber">${members[i].phoneNumber}</span>
+        //                 <br>
+        //                 <p style="display: inline;">Email: </p><span id="email">${members[i].email}</span>
+        //                 <br>
+        //                 <p style="display: inline;">Address: </p><span id="email">${members[i].address}</span>
+        //                 <br>
+        //                 <div class="float-end">
+        //                     <a href="" onclick="deleteMember(${members[i].memberID})" class="btn btn-secondary">Delete</a>
+        //                     <a href="editmember.html#${members[i].memberID}" class="btn btn-secondary" onclick="getMemberByID(${members[i].memberID})">Edit</a>
+        //                     <a href="borrowbook.html#${members[i].memberID}" class="btn btn-secondary">Borrow book</a>
+        //                 </div>
+        //             </div> <!--card body ends here-->
+        //         </div> <!-- Column/Card ends here -->`
+        //     }
+        // }
+        // getAllMembers()
 
         // delete member with given id
+        // async function deleteMember(id) {
+        //     if (confirm('Are you sure you want to delete this member?')) {
+        //         console.log(`[delete Member] ${id}`)
+        //         const result = await fetch(`/api/member/${id}`, { method: 'delete' })
+
+        //     }
+        //     const memeberData = { memberID: id }
+        //     const result = await fetchJSON(`/api/member/${memberID}`, 'delete', memeberData)
+        //     if (result.status == true) {
+        //         window.location.replace("/allmembers.html")
+        //     }
+        // }
         async function deleteMember(id) {
-            if( confirm( 'Are you sure you want to delete this member?' ) ){
-                console.log( `[delete Member] ${id}` )
-                const result = await fetch(`/api/member/${id}`,{method: 'delete'})
+
+            const fetchOptions = {
+                headers: { 'Content-Type': 'application/json' },
+                method: 'delete'
             }
+            const result = await fetch(`/api/member/${id}`, fetchOptions).then(r => r.json())
+            // reload the quotes with the deleted ones now gone
+            getAllMembers()
         }
+        
     </script>
+
+
 </body>
+
 </html>

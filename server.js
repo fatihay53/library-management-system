@@ -16,8 +16,8 @@ app.use(express.json())
 // show all members
 app.get('/api/members', async function (req, res) {
     const membersList = await orm.getMembers()
- 
-   
+
+
     res.send(membersList)
 })
 
@@ -52,11 +52,12 @@ app.get('/api/members', async function (req, res) {
 })
 
 app.delete('/api/member/:id', function (req, res) {
-    
+
     const memberId = req.params.id
     console.log(`[deleteMember]: ${memberId}`)
-    orm.deleteMember(memberId)
-    res.send('/allmembers.html')
+    let result = orm.deleteMember(memberId)
+    res.send(result)
+
 })
 // ======================== Member End ==============================
 
@@ -73,6 +74,7 @@ app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
     console.log("book is found")
     res.send(books)
 })
+
 
 
 // app.use(function (req, res) {
@@ -119,6 +121,12 @@ app.get('/api/categoriesList', async function (req, res) {
     res.send(categoriesList)
 })
 
+app.get('/api/book/search/:name', async function (req, res) {
+    const name = req.params.name.trim()
+    console.log("[searchBook] ", name)
+    const bookLst = await orm.searchBook(name)
+    res.send(bookLst)
+})
 
 //=====================CATEGORY====================
 
@@ -147,7 +155,7 @@ app.post('/api/category/:id/update', async (req, res) => {
     let result = await orm.updateCategory(id, data)
 
     res.redirect('/allcategory.html')
-    
+
 })
 
 //              category get by ID
