@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const db = require('./connection')('library_managment_system', 'password123')
+=======
+const db = require('./connection')('library_managment_system', 'Winter2021')
+>>>>>>> branch-ilias
 
 
 
