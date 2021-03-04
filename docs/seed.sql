@@ -1,6 +1,5 @@
-use library_managment_system;
 
-<<<<<<< HEAD
+
 //                                                  BOOK
 
 INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate) values ('The Fellowship of the Ring','J Tolkien','1954',null,2,null)
@@ -9,7 +8,7 @@ INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate)
 INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate) values ('Alice in Wonderland','Jane Carruth & Lewis Carroll','2004',null,3,null)
 INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate) values ('Watchmen','Alan Moore','1987',null,10,null)
 
-// table books
+
 
 
 //                                                  MEMBERS
@@ -19,8 +18,9 @@ INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES ('F
 INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES ('Siyuan','Huo','3358845577','siyuan.huo@yahoo.com','TORONTO')
 INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES ('Ilias','Chowdhury','3358845578','iliasc8@gmail.com','TORONTO')
 INSERT INTO member (firstName, lastName, phoneNumber, email, address) VALUES ('Muhammad','Alim','3358845579','muhammadalim3435@gmail.com','TORONTO')
-=======
--- Insert a set of records.
+
+
+//                                                  CATEGORIES
 
 INSERT INTO category (categoryName,categoryDes) VALUES ('Literature','Literature is the art of written works. The two most basic written literary categories include fiction and non-fiction');
 INSERT INTO category (categoryName,categoryDes) VALUES ('Fantasy Fiction','Fantasy Fiction could be described as something that contains rudiments that are not realistic. Fantasy usually describes those stories that could not happen in real life');
@@ -38,4 +38,3 @@ INSERT INTO category (categoryName,categoryDes) VALUES ('Classsics','A classic�
 INSERT INTO category (categoryName,categoryDes) VALUES ('Sports','Sports engagement in physical activity intended to create a benefit to the participant');
 INSERT INTO category (categoryName,categoryDes) VALUES ('Thrillern','Thrillers are characterized by fast pacing, frequent action, and resourceful heroes who must thwart the plans of more-powerful and better-equipped villains.');
 INSERT INTO category (categoryName,categoryDes) VALUES ('Young-Adult','Young-adult fiction (often abbreviated as YA) is fiction written for, published for, or marketed to adolescents and young adults, roughly ages 13 to 18.');
->>>>>>> branch-ilias
