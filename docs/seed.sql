@@ -3,4 +3,7 @@ insert into category (categoryName, categoryDes) values ("Business", "Business b
 
 insert into category (categoryName, categoryDes) values ("Science", "Science books etc..");
 
+// table books
+
+
 

@@ -1,4 +1,4 @@
-const db = require('./connection')('library_managment_system', 'rootroot')
+const db = require('./connection')('library_managment_system', 'password123')
 
 
 
