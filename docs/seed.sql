@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-insert into category (categoryName, categoryDes) values ("Business", "Business books etc..");
-=======
->>>>>>> branch-Fatih
 
 //                                                  BOOK
 
@@ -13,10 +8,6 @@ INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate)
 INSERT INTO book (bookName,author,publishingYear,memberID,categoryID,borrowDate) values ('Watchmen','Alan Moore','1987',null,10,null)
 
 // table books
-
-
-=======
->>>>>>> branch-ilias
 
 
 //                                                  MEMBERS
