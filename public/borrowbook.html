@@ -79,14 +79,14 @@
     async function updateBook(BookID){
         const memeberID = getMemberByIDToBorrow();
         const bookID = JSON.stringify(BookID)
-        const borrow_date = JSON.stringify(moment().format("YYYY/MM/DD"));
+        const borrowDate = JSON.stringify(moment().format("YYYY/MM/DD"));
 
         // const bookID = document.querySelector("#bookID").innerHTML;
         console.log(`memberID is ${memeberID}`)
         console.log(`Book id is ${bookID}`)
-        console.log(`Book id is ${borrow_date}`)
+        console.log(`Book id is ${borrowDate}`)
 
-        const bookData = {bookID: bookID, memberID:memeberID, borrow_date:borrow_date}
+        const bookData = {bookID: bookID, memberID:memeberID, borrowDate:borrowDate}
         const result = await fetchJSON(`/api/borrow`,'put', bookData)
         if(result.status == true){
             window.location.replace("/index.html")

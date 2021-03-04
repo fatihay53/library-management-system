@@ -84,9 +84,9 @@ app.get('/api/getborrowedbooks/:memberID', async function (req, res) {
 app.put("/api/borrow", async function (req, res) {
     const bookID = req.body.bookID.trim();
     const memberID = req.body.memberID.trim();
-    const borrow_date = req.body.borrow_date.trim();
-    console.log(bookID, memberID, borrow_date)
-    const result = await orm.borrowBook(bookID, memberID, borrow_date)
+    const borrowDate = req.body.borrowDate.trim();
+    console.log(bookID, memberID, borrowDate)
+    const result = await orm.borrowBook(bookID, memberID, borrowDate)
 
     console.log("book has been updated")
     // windows.location.href = "/index.html"
