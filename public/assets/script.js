@@ -101,7 +101,7 @@ async function getAllCategories() {
                             class="card-link btn btn-outline-danger btn-sm" style="width: 61px;">Delete</a>
                         </div>
                         <a href="editcategory.html#${data.categoryID}"
-                            class="card-link btn btn-outline-light btn-sm " style="width: 61px; color: #26A3B4; border: 1px solid #26A3B4;">Edit</a>
+                            class="card-link btn btn-outline-info btn-sm " style="width: 61px; color: #26A3B4; border: 1px solid #26A3B4;">Edit</a>
                    
                 </div>
 
