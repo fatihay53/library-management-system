@@ -51,56 +51,7 @@
         </ul>
     </div>
 
-    <script>
-
-    function fetchJSON( url, method='get', data={} ){
-        const fetchOptions = {
-            method,
-            headers: { 'Content-Type': 'application/json' },					
-        }
-        if( method==='post' || method==='put' )
-            fetchOptions.body = JSON.stringify(data)
-
-        return fetch(url, fetchOptions).then( r=>r.json() )
-    }
-
-    async function getAllBorrowedBooksByID(){
-        const memberID = getMemberByIDToReturn();
-        const borrowedBooks = await fetch(`/api/getborrowedbooks/${memberID}`).then(r => r.json())
-
-        for(i=0; i<borrowedBooks.length; i++){
-            document.querySelector("#borrowedListByMember").innerHTML += `
-            <li class="list-group-item"><span id="bookID" hidden>${borrowedBooks[i].bookID}</span><b>Book Name:</b> ${borrowedBooks[i].bookName}    
-                <b>Author:</b> ${borrowedBooks[i].author}     <b>Borrowed On:</b> ${borrowedBooks[i].borrowDate}  
-                <a class="btn btn-outline-light float-end"onClick={returnBook(${borrowedBooks[i].bookID})} style="color: #26A3B4; border: 1px solid #26A3B4;">Return</a></li>`
-        }
-    }
-    
-    async function returnBook(BookID){
-
-        const bookID = JSON.stringify(BookID)
-
-        const book = {bookID: bookID}
-
-        const result = await fetchJSON(`/api/return`,'put', book)
-
-        if(result.status == true){
-            window.location.replace("/index.html")
-        }
-
-    }
-
-    function getMemberByIDToReturn(){
-        let memberID=location.hash.substr(1)
-        return memberID;
-    }
-
-    getAllBorrowedBooksByID()
-
-
-
-    </script>
-
+    <script type="text/javascript" src="./script/BookScript.js "></script>
 
 </body>
 </html>

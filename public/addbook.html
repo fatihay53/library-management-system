@@ -83,31 +83,7 @@
         </form>
     </div>
 
-    <script>
-
-        // function checkSelectedOption(){
-        //    let xyz = document.querySelector("#categoryOptions").value
-        //    if(xyz ==="")
-        //    {
-        //        alert('Please select category')
-        //    }
-        // }
-
-        // function to return list of categories to display in dropdown menu to add new book
-        async function getCategoryList(){
-
-            const catgeoriesList = await fetch('/api/categoriesList' ).then( r=>r.json() )
-
-            // document.querySelector('#membersList').innerHTML = ''
-
-
-            for(i=0; i<catgeoriesList.length; i++){
-                document.querySelector('#categoryOptions').innerHTML +=
-                `<option value="${catgeoriesList[i].categoryID}">${catgeoriesList[i].categoryName}</option>`;
-            }
-        }
-        getCategoryList()
-    </script>
+    <script type="text/javascript" src="./script/BookScript.js "></script>
 </body>
 
 </html>
