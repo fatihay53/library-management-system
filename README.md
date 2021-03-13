@@ -33,35 +33,35 @@
 ## Demo:
 
 <p align="center">
-<img  src="./public/assets/img/home-page.png" width="75%" height="500px">
+<img  src="./public/assets/img/home-page.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/list-options.png" width="75%" height="500px">
+<img src="./public/assets/img/list-options.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/add-member.png" width="75%" height="500px">
+<img src="./public/assets/img/add-member.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/add-book.png" width="75%" height="500px">
+<img src="./public/assets/img/add-book.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/add-category.png" width="75%" height="500px">
+<img src="./public/assets/img/add-category.png">
 </p>
 
 <p align="center">
-<img src="./public/assets/img/members-list.png" width="75%" height="500px">
+<img src="./public/assets/img/members-list.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/available-book.png" width="75%" height="500px">
+<img src="./public/assets/img/available-book.png" >
 </p>
 
 <p align="center">
-<img src="./public/assets/img/borrowed-book.png" width="75%" height="500px">
+<img src="./public/assets/img/borrowed-book.png" >
 </p>
 
 
