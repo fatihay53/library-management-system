@@ -7,7 +7,8 @@
 
 <h1>Description</h1>
 
-    To build a management system that helps in handling the primary functions of libraries that involves maintaining the database for entering new books and recording books that have been borrowed by members
+    To build a management system that helps in handling the primary functions of libraries that involves 
+    maintaining the database for entering new books and recording books that have been borrowed by members
 
 
 <h1> Table of Contents </h1>
