@@ -3,6 +3,10 @@
 const orm = require('./orm');
 
 
+const debug = require('debug')('member')
+
+
+
 function router(app) {
     // ======================= Member ===================================
     // show all members
@@ -10,14 +14,16 @@ function router(app) {
         const membersList = await orm.getMembers()
 
 
+
         res.send(membersList)
     })
 
-    // to get memeber info by passing 
+    // to get memeber info by passing
 
     app.get('/api/member/:memberID', async function (req, res) {
         const id = req.params.memberID
         const member = await orm.getMember(id)
+
         res.send(member)
     })
 
@@ -25,6 +31,8 @@ function router(app) {
     app.post('/api/addmember/member', async (req, res) => {
         const rawData = req.body
         await orm.addMember(rawData)
+        const myValues = Object.values(rawData)
+        debug('Added New Member:' + (myValues));
         res.redirect('/allmembers.html')
     })
 
@@ -125,7 +133,6 @@ function router(app) {
     //          adding Category
     app.post('/api/addcategory', async (req, res) => {
         const data = req.body
-        console.log(data)
         let result = await orm.addCategory(data)
 
         res.redirect('/allcategory.html')
@@ -133,7 +140,6 @@ function router(app) {
     //          delete Category
     app.delete('/api/deletecategory/:id', async (req, res) => {
         let id = req.params.id
-        // console.log(id)
         let result = await orm.deleteCategory(id)
         res.send(result)
 
@@ -145,6 +151,8 @@ function router(app) {
         let data = req.body
         let id = req.params.id
         let result = await orm.updateCategory(id, data)
+        // const myValues = Object.values(data)
+        // debug('Updated Category Detail=' + (myValues));
 
         res.redirect('/allcategory.html')
 
@@ -154,7 +162,6 @@ function router(app) {
     app.get('/api/category/:id', async (req, res) => {
         let id = req.params.id
         let result = await orm.getCategory(id)
-        console.log(result)
         res.send(result)
     })
 
@@ -176,6 +183,8 @@ function router(app) {
     app.post('/api/addbook', async (req, res) => {
         const bookData = req.body
         await orm.addBook(bookData)
+        const myValues = Object.values(bookData)
+        debug('Book Detail=' + myValues);
         res.redirect('/index.html')
     })
     //                  updateBook
@@ -188,6 +197,7 @@ function router(app) {
     app.delete('api/deletebook/:id', async (req, res) => {
         let id = req.params.id
         await orm.deleteBooks(id)
+
     });
 
 
@@ -197,4 +207,5 @@ function router(app) {
 
 
 }
+
 module.exports = router
